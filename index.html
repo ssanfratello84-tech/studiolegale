@@ -610,36 +610,44 @@
 (function () {
   'use strict';
 
-  /* ---------- Header: comparsa/scomparsa intelligente e ombra ---------- */
+  /* ---------- Header: Scomparsa SOLO mobile e Ombra ---------- */
   var header = document.getElementById('siteHeader');
   var lastScroll = 0;
-  
-  // Aggiungiamo le classi per un'animazione fluida dell'header
-  header.classList.add('transition-transform', 'duration-300', 'ease-in-out');
 
-  function onScroll() { 
+  function onScroll() {
     var currentScroll = window.scrollY || document.documentElement.scrollTop;
     var mobileMenu = document.getElementById('mobileMenu');
     var isMenuOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
-    
-    // 1. Ombra allo scroll (si attiva dopo 8px)
+
+    // 1. Ombra allo scroll attiva ovunque (desktop e mobile)
     header.classList.toggle('is-scrolled', currentScroll > 8);
-    
-    // 2. Scomparsa/Comparsa intelligente (non si nasconde se il menu mobile è aperto)
-    if (!isMenuOpen) {
-      if (currentScroll > lastScroll && currentScroll > 80) {
-        // Se scorri verso il basso (e sei sceso di almeno 80px): nascondi l'header in alto
-        header.style.transform = 'translateY(-100%)';
-      } else {
-        // Se scorri verso l'alto: fai riapparire l'header
-        header.style.transform = 'translateY(0)';
+
+    // 2. Gestione comparsa/scomparsa (Solo per schermi sotto i 1024px)
+    if (window.innerWidth < 1024) {
+      if (!isMenuOpen) {
+        // La riga qui sotto risolve il bug del rimbalzo su smartphone
+        if (currentScroll <= 0) {
+          header.style.transform = 'translateY(0)';
+        } else if (currentScroll > lastScroll && currentScroll > 80) {
+          // Scorri in giù: l'header sale morbido
+          header.style.transform = 'translateY(-100%)';
+        } else if (currentScroll < lastScroll) {
+          // Scorri in su: l'header scende morbido
+          header.style.transform = 'translateY(0)';
+        }
       }
+    } else {
+      // SU DESKTOP: l'header resta sempre fisso, non si muove.
+      header.style.transform = 'translateY(0)';
     }
-    
+
     lastScroll = currentScroll <= 0 ? 0 : currentScroll;
   }
+  
+  // Aggiunto 'resize' per resettare l'header se ruoti il telefono
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // Inizializza lo stato al caricamento
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
 
   /* ---------- Menu mobile ---------- */
   var menuBtn = document.getElementById('menuBtn');
