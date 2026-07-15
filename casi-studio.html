@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="it" class="motion-safe:scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Casi Studio | Studio Legale Mazzotta – Milano</title>
+<meta name="description" content="Sei interventi rappresentativi tra impresa, patrimonio e antifrode: il metodo della direzione unitaria dello Studio Legale Mazzotta, verificato sui risultati.">
+<meta name="theme-color" content="#101F44">
+<link rel="canonical" href="https://www.studiolegalemazzotta.it/casi-studio.html">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Studio Legale Mazzotta">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Casi Studio | Studio Legale Mazzotta – Milano">
+<meta property="og:description" content="Sei interventi rappresentativi tra impresa, patrimonio e antifrode: il metodo della direzione unitaria dello Studio Legale Mazzotta, verificato sui risultati.">
+<meta property="og:url" content="https://www.studiolegalemazzotta.it/casi-studio.html">
+<meta property="og:image" content="https://www.studiolegalemazzotta.it/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://www.studiolegalemazzotta.it/"},
+{"@type":"ListItem","position":2,"name":"Casi Studio","item":"https://www.studiolegalemazzotta.it/casi-studio.html"}]}
+</script>
+
+<link rel="preload" href="fonts/cormorant-garamond-v21-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/cormorant-garamond-v21-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-sans-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-sans-v4-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { DEFAULT: '#101F44', deep: '#0B1631' }
+        },
+        fontFamily: {
+          serif: ['"Cormorant Garamond"', 'Georgia', '"Times New Roman"', 'serif'],
+          sans: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  ::selection { background: #101F44; color: #ffffff; }
+  body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+  /* ---- Eyebrow editoriale ---- */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .8rem;
+    font-size: 11px; font-weight: 600; letter-spacing: .34em;
+    text-transform: uppercase; color: #6B7690;
+  }
+  .eyebrow::before { content: ""; width: 2.4rem; height: 1px; background: #C1A87D; opacity: 1; }
+  .eyebrow--light { color: #C1A87D; }
+  .eyebrow--light::before { background: #C1A87D; opacity: .6; }
+
+  .track-label {
+    font-size: 10px; font-weight: 600; letter-spacing: .3em;
+    text-transform: uppercase; color: rgba(16, 31, 68, .5);
+  }
+
+  /* ---- Nav ---- */
+  #siteHeader { transition: box-shadow .3s ease; }
+  #siteHeader.is-scrolled { box-shadow: 0 1px 0 rgba(16,31,68,.06), 0 12px 32px -20px rgba(16,31,68,.16); }
+
+  .nav-link { position: relative; font-size: .9rem; color: #4A5568; transition: color .25s ease; }
+  .nav-link::after {
+    content: ""; position: absolute; left: 0; bottom: -7px; width: 100%; height: 1px;
+    background: #C1A87D; transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+  }
+  .nav-link:hover { color: #101F44; }
+  .nav-link:hover::after, .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+  .nav-link[aria-current="page"] { color: #101F44; font-weight: 500; }
+
+  /* ---- Bottoni ---- */
+  .btn-white {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    border-radius: 9999px; background: #ffffff; color: #101F44;
+    font-size: .875rem; font-weight: 500; letter-spacing: .04em;
+    padding: .85rem 1.9rem; cursor: pointer;
+    transition: background .25s ease, box-shadow .3s ease, transform .2s ease;
+  }
+  .btn-white:hover { background: #C1A87D; color: #101F44; box-shadow: 0 16px 34px -16px rgba(0,0,0,.5); }
+  .btn-white:active { transform: translateY(1px); }
+  .btn-white:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+
+  /* ---- Footer ---- */
+  .footer-h { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; font-weight: 500; color: #ffffff; }
+  .footer-link { color: #C6CEDF; transition: color .25s ease; }
+  .footer-link:hover { color: #ffffff; }
+
+  /* ---- Reveal on scroll ---- */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .85s ease, transform .85s cubic-bezier(.22,.85,.35,1); }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: .12s; }
+  .reveal-d2 { transition-delay: .22s; }
+  .reveal-d3 { transition-delay: .32s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+</style>
+<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+</head>
+
+<body class="bg-white font-sans text-slate-600">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-navy focus:px-5 focus:py-2.5 focus:text-sm focus:text-white">Vai al contenuto</a>
+
+<!-- ============================================================
+     NAVIGATION BAR
+============================================================= -->
+<header id="siteHeader" class="fixed inset-x-0 top-0 z-40 border-b border-navy/5 bg-white/85 backdrop-blur-md">
+  <nav class="mx-auto flex h-[78px] max-w-7xl items-center justify-between px-5 lg:px-8" aria-label="Navigazione principale">
+    <a href="index.html" class="flex items-center gap-1">
+      <img src="logo.webp" alt="" class="h-12 w-[66px] shrink-0 object-contain">
+         <span class="flex flex-col" style="margin-top: -1px;">
+            <span class="text-[23px] uppercase leading-[0.95] tracking-[0.04em] text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600;">STUDIO LEGALE MAZZOTTA</span>
+            <span class="mt-0.5 text-[11px] uppercase leading-none tracking-[0.32em] text-slate-500" style="font-family: 'Instrument Sans', sans-serif; font-weight: 500;">BOUTIQUE LEGALE</span>
+          </span>
+    </a>
+
+    <div class="hidden items-center gap-8 lg:flex">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="modello-operativo.html" class="nav-link">Modello Operativo</a>
+      <a href="funzioni-strategiche.html" class="nav-link">Funzioni Strategiche</a>
+      <a href="casi-studio.html" class="nav-link" aria-current="page">Casi Studio</a>
+      <a href="contatti.html" class="ml-2 rounded-full border border-[#C1A87D] bg-[#C1A87D] px-6 py-2.5 text-sm font-medium text-navy transition-all hover:border-navy hover:bg-navy hover:text-white">Contatti</a>
+    </div>
+
+    <button id="menuBtn" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-navy transition hover:bg-gray-50 lg:hidden" aria-expanded="false" aria-controls="mobileMenu" aria-label="Apri il menu di navigazione">
+      <svg id="iconOpen" viewBox="0 0 22 14" class="h-3.5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 1h20M1 7h20M1 13h13"/></svg>
+      <svg id="iconClose" viewBox="0 0 14 14" class="hidden h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 1l12 12M13 1L1 13"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobileMenu" class="hidden border-t border-navy/5 bg-white px-5 pb-7 pt-2 lg:hidden">
+    <a href="index.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Home</a>
+    <a href="modello-operativo.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Modello Operativo</a>
+    <a href="funzioni-strategiche.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Funzioni Strategiche</a>
+    <a href="casi-studio.html" class="block border-b border-gray-100 py-3.5 text-[15px] font-medium text-navy" aria-current="page">Casi Studio</a>
+    <a href="contatti.html" class="mt-5 block w-full rounded-full border border-[#C1A87D] bg-[#C1A87D] py-3.5 text-center text-[15px] font-medium text-navy transition-all hover:border-navy hover:bg-navy hover:text-white">Contatti</a>
+  </div>
+</header>
+
+<main id="main" class="pt-[78px]">
+
+  <!-- ============================================================
+       HERO — apertura editoriale, layout asimmetrico
+  ============================================================= -->
+ <section class="relative overflow-hidden bg-white lg:flex lg:min-h-[calc(92vh-78px)] lg:items-stretch">
+    <div class="relative mx-auto grid w-full max-w-7xl items-start gap-12 px-5 pb-12 pt-12 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:pb-12 lg:pt-20">
+
+      <div class="reveal lg:col-span-6 lg:flex lg:h-full lg:flex-col lg:self-stretch">
+        <p class="eyebrow">Casi Studio</p>
+        <h1 class="mt-8 text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(2.7rem, 5.4vw, 4.4rem); line-height: 0.98; letter-spacing: 0.02em;">FASCICOLI<br>RISOLTI</h1>
+        <p class="mt-8 text-[1.02rem] leading-[1.9] text-slate-600"><span style="float: left; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; color: #101F44; font-size: 1.8em; line-height: 0.75; margin-right: 0.05em; margin-top: 0.08em;">S</span>ei interventi rappresentativi del metodo su cui costruiamo ogni fascicolo, selezionati dal nostro portafoglio di casi. Ogni caso è reso anonimo a tutela della riservatezza dei clienti: settori, luoghi e riferimenti specifici sono stati generalizzati.</p>
+      </div>
+
+      <div class="reveal reveal-d1 lg:col-span-5 lg:col-start-8 lg:border-l lg:border-navy/10 lg:pl-14 lg:pt-4">
+        <nav class="mt-12 max-w-md border-t border-navy/10" aria-label="Indice della pagina">
+          <a href="#sezione-01" class="group flex items-baseline justify-between gap-6 border-b border-navy/10 py-5">
+            <span class="track-label transition-colors duration-500 group-hover:text-navy">Sezione 01</span>
+             <span class="text-right text-navy/70 transition-colors duration-500 group-hover:text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.15rem; line-height: 1.3;">Impresa e Tutela Aziendale</span>
+          </a>
+          <a href="#sezione-02" class="group flex items-baseline justify-between gap-6 border-b border-navy/10 py-5">
+            <span class="track-label transition-colors duration-500 group-hover:text-navy">Sezione 02</span>
+             <span class="text-right text-navy/70 transition-colors duration-500 group-hover:text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.15rem; line-height: 1.3;">Clienti Privati e Patrimonio</span>          </a>
+          <a href="#sezione-03" class="group flex items-baseline justify-between gap-6 border-b border-navy/10 py-5">
+            <span class="track-label transition-colors duration-500 group-hover:text-navy">Sezione 03</span>
+             <span class="text-right text-navy/70 transition-colors duration-500 group-hover:text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.15rem; line-height: 1.3;">Verifica Preventiva e Antifrode</span>
+          </a>
+        </nav>
+        <p class="mt-8 border-t border-navy/10 pt-7 text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.35rem; line-height: 1.45;">Il metodo si giudica ai risultati: architettura del rischio, non vittorie isolate.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       SEZIONE 01 — IMPRESA & TUTELA AZIENDALE
+       (schema fisso, uguale su tutte le sezioni: casi a sinistra
+       allargati, titolo/sticky a destra — nessuna alternanza,
+       pagina di lettura, non di navigazione)
+  ============================================================= -->
+  <section id="sezione-01" class="relative overflow-hidden border-y border-navy/5 bg-stone-100 scroll-mt-16">
+    <div class="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+
+      <span class="pointer-events-none absolute -top-6 right-1 select-none leading-none text-[#C1A87D]/[0.12] lg:right-4" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(9rem, 21vw, 18rem);" aria-hidden="true">01</span>
+
+      <div class="relative grid gap-12 lg:grid-cols-12 lg:gap-10">
+
+        <aside class="reveal lg:order-2 lg:col-span-4">
+          <div class="lg:sticky lg:top-32">
+            <h2>
+              <span class="track-label block">Sezione 01</span>
+              <span class="mt-4 block text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(1.9rem, 2.6vw, 2.45rem); line-height: 1.12;">Impresa &amp;<br>Tutela Aziendale</span>
+            </h2>
+            <span class="mt-8 block h-px w-16 bg-[#C1A87D]/70" aria-hidden="true"></span>
+          </div>
+        </aside>
+
+        <div class="lg:order-1 lg:col-span-8">
+
+          <article id="caso-sinistro-industriale" class="reveal group scroll-mt-32 border-b border-navy/10 pb-10 lg:pb-12">
+            <div class="grid gap-4 sm:grid-cols-[72px,1fr] sm:gap-8">
+              <span class="track-label pt-2.5 text-navy/40 transition-colors duration-500 group-hover:text-navy/80" aria-hidden="true">01.1</span>
+              <div>
+                <h3 class="text-navy/80 transition-colors duration-500 group-hover:text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.6rem; line-height: 1.2;">Sinistro Industriale con Risvolti Penali</h3>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Scenario complesso.</strong> Un incendio notturno devasta il reparto produttivo di un'azienda manifatturiera. Un operatore resta ferito. In quarantott'ore si aprono tre fronti simultanei: un procedimento penale a carico del vertice aziendale per violazioni antinfortunistiche, la contestazione della compagnia assicurativa sull'indennizzo, il fermo totale della produzione con penali contrattuali in maturazione verso i clienti.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Intervento della Regia.</strong> La regia attiva entro poche ore gli ingegneri forensi per cristallizzare la prova tecnica sullo stato dell'impianto e sulla dinamica dell'evento, prima che il quadro probatorio si deteriori. In parallelo: investigazioni difensive sulla catena di manutenzione, coordinamento sul fronte antinfortunistico, negoziazione tecnica con i periti della compagnia. Civile e penale procedono dentro un'unica strategia, con un solo centro decisionale.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Risultato.</strong> La posizione delle figure apicali viene definita in sede penale senza compromettere la continuità aziendale; l'indennizzo assicurativo viene riconosciuto su basi tecniche documentate; la produzione riparte con un protocollo di sicurezza rafforzato che riduce il profilo di rischio futuro.</p>
+              </div>
+            </div>
+          </article>
+
+          <article id="caso-modello-231" class="reveal group scroll-mt-32 pt-10 lg:pt-12">
+            <div class="grid gap-4 sm:grid-cols-[72px,1fr] sm:gap-8">
+              <span class="track-label pt-2.5 text-navy/40 transition-colors duration-500 group-hover:text-navy/80" aria-hidden="true">01.2</span>
+              <div>
+                <h3 class="text-navy/80 transition-colors duration-500 group-hover:text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.6rem; line-height: 1.2;">Il Modello 231 alla Prova del Giudizio</h3>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Scenario complesso.</strong> Un'indagine per corruzione tra privati coinvolge un dirigente commerciale di una media impresa. La Procura contesta all'ente la responsabilità amministrativa ex D.Lgs. 231/2001: sul tavolo, sanzioni pecuniarie e misure interdittive capaci di escludere la società dalle gare che generano la parte prevalente del fatturato.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Intervento della Regia.</strong> La regia lavora su due piani distinti. Gli analisti ricostruiscono i flussi decisionali e documentano che la condotta del dirigente è avvenuta eludendo fraudolentemente i presidi del Modello organizzativo; la difesa dell'ente viene separata da quella della persona fisica, per evitare conflitti di interesse e cortocircuiti probatori. In parallelo, l'Organismo di Vigilanza viene affiancato nella verifica e nel rafforzamento immediato dei protocolli interni.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Risultato.</strong> L'ente esce dal procedimento senza misure interdittive: la responsabilità resta confinata alla condotta individuale. La società conserva l'accesso alle gare e trasforma l'indagine in un audit reale del proprio sistema di controllo, oggi più solido di prima della contestazione.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEZIONE 02 — PRIVATE CLIENTS & PATRIMONIO
+       (stesso schema fisso di Sezione 01 — vedi commento sopra)
+  ============================================================= -->
+  <section id="sezione-02" class="relative overflow-hidden bg-white scroll-mt-16">
+    <div class="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+
+      <span class="pointer-events-none absolute -top-6 right-1 select-none leading-none text-[#C1A87D]/[0.12] lg:right-4" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(9rem, 21vw, 18rem);" aria-hidden="true">02</span>
+
+      <div class="relative grid gap-12 lg:grid-cols-12 lg:gap-10">
+
+        <aside class="reveal lg:order-2 lg:col-span-4">
+          <div class="lg:sticky lg:top-32">
+            <h2>
+              <span class="track-label block">Sezione 02</span>
+                <span class="mt-4 block text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(1.9rem, 2.6vw, 2.45rem); line-height: 1.12;">Clienti Privati &amp;<br>Patrimonio</span>
+            </h2>
+            <span class="mt-8 block h-px w-16 bg-[#C1A87D]/70" aria-hidden="true"></span>
+          </div>
+        </aside>
+
+        <div class="lg:order-1 lg:col-span-8">
+
+          <article id="caso-deadlock-fratelli" class="reveal group scroll-mt-32 border-b border-navy/10 pb-10 lg:pb-12">
+            <div class="grid gap-4 sm:grid-cols-[72px,1fr] sm:gap-8">
+              <span class="track-label pt-2.5 text-navy/40 transition-colors duration-500 group-hover:text-navy/80" aria-hidden="true">02.1</span>
+              <div>
+                  <h3 class="text-navy/80 transition-colors duration-500 group-hover:text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.6rem; line-height: 1.2;">Stallo al 50%: Due Fratelli, un'Azienda Ferma</h3>
+
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Scenario complesso.</strong> Due fratelli, soci paritetici di un'impresa familiare di seconda generazione, entrano in conflitto totale dopo la scomparsa del fondatore. Il 50/50 paralizza ogni delibera: bilancio non approvato, banche in allerta, fornitori che pretendono garanzie. La frattura personale sta scivolando verso l'insolvenza aziendale.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Intervento della Regia.</strong> La regia separa i piani. Gestione d'urgenza: interlocuzione con banche e fornitori, presidio degli atti indifferibili. Soluzione strutturale: con i commercialisti viene progettata una riorganizzazione fondata su una valutazione indipendente dell'azienda, la scissione dei rami di attività e meccanismi di uscita a valori certi. L'intera negoziazione si svolge in sede riservata, lontano dalle aule e dai riflettori.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Risultato.</strong> I due rami proseguono come imprese autonome, ciascuna con una guida unica; nessun contenzioso giudiziario viene mai instaurato; valore aziendale e affidamenti bancari restano integri per l'intera durata della transizione.</p>
+              </div>
+            </div>
+          </article>
+
+          <article id="caso-blindatura-patrimonio" class="reveal group scroll-mt-32 pt-10 lg:pt-12">
+            <div class="grid gap-4 sm:grid-cols-[72px,1fr] sm:gap-8">
+              <span class="track-label pt-2.5 text-navy/40 transition-colors duration-500 group-hover:text-navy/80" aria-hidden="true">02.2</span>
+              <div>
+                <h3 class="text-navy/80 transition-colors duration-500 group-hover:text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.6rem; line-height: 1.2;">La Blindatura che Regge all'Attacco</h3>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Scenario complesso.</strong> Anni dopo aver riorganizzato i propri assetti con lo Studio — separazione tra patrimonio personale e attività d'impresa tramite holding e vincoli di destinazione — un imprenditore subisce il default di una controparte rilevante. I creditori della società operativa tentano di estendere le pretese ai beni personali e familiari, contestando le strutture come atti compiuti in frode.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Intervento della Regia.</strong> La regia oppone ciò che era stato costruito esattamente per questo momento: cronologia degli atti anteriore all'insorgere di qualunque esposizione, causa concreta e documentata di ogni struttura, piena tracciabilità dei flussi. Il dossier di legittimità predisposto anni prima viene prodotto in giudizio; i commercialisti certificano la coerenza economica di ogni operazione.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Risultato.</strong> Le azioni revocatorie vengono respinte: le strutture reggono perché nate legittime, in tempi non sospetti e con finalità documentate. Il patrimonio familiare resta integro. La conferma di un principio dello Studio: la blindatura funziona quando è architettura preventiva, mai quando è fuga dell'ultimo minuto.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEZIONE 03 — DUE DILIGENCE & ANTIFRODE
+       (tema trasversale ai due Binari — NON un terzo Binario
+       ufficiale. Stesso schema fisso di Sezione 01/02 — vedi
+       commento in Sezione 01)
+  ============================================================= -->
+  <section id="sezione-03" class="relative overflow-hidden border-y border-navy/5 bg-stone-100 scroll-mt-16">
+    <div class="relative mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+
+      <span class="pointer-events-none absolute -top-6 right-1 select-none leading-none text-[#C1A87D]/[0.12] lg:right-4" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(9rem, 21vw, 18rem);" aria-hidden="true">03</span>
+
+      <div class="relative grid gap-12 lg:grid-cols-12 lg:gap-10">
+
+        <aside class="reveal lg:order-2 lg:col-span-4">
+          <div class="lg:sticky lg:top-32">
+            <h2>
+              <span class="track-label block">Sezione 03</span>
+               <span class="mt-4 block text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(1.9rem, 2.6vw, 2.45rem); line-height: 1.12;">Verifica Preventiva &amp;<br>Antifrode</span>
+
+
+            </h2>
+            <span class="mt-8 block h-px w-16 bg-[#C1A87D]/70" aria-hidden="true"></span>
+            <p class="mt-8 max-w-xs text-[15px] leading-[1.8] text-slate-500">Un filo trasversale ai due binari: la prevenzione del rischio, applicata prima della firma, non dopo il sequestro.</p>
+          </div>
+        </aside>
+
+        <div class="lg:order-1 lg:col-span-8">
+
+          <article id="caso-frode-assicurativa" class="reveal group scroll-mt-32 border-b border-navy/10 pb-10 lg:pb-12">
+            <div class="grid gap-4 sm:grid-cols-[72px,1fr] sm:gap-8">
+              <span class="track-label pt-2.5 text-navy/40 transition-colors duration-500 group-hover:text-navy/80" aria-hidden="true">03.1</span>
+              <div>
+                <h3 class="text-navy/80 transition-colors duration-500 group-hover:text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.6rem; line-height: 1.2;">Smantellamento di una Frode Assicurativa Complessa</h3>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Scenario complesso.</strong> Una compagnia registra, in pochi mesi, una serie anomala di sinistri riconducibili allo stesso territorio: dinamiche fotocopia, testimoni ricorrenti, documentazione medica seriale. Gli indennizzi liquidati e le riserve appostate crescono; i controlli ordinari non riescono a dimostrare il disegno unitario.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Intervento della Regia.</strong> La regia incrocia tre linee di lavoro: investigatori difensivi sul campo per verificare dinamiche e testimonianze; analisti per la mappatura dei collegamenti tra soggetti, veicoli e professionisti coinvolti; periti medico-legali e cinematici per smontare tecnicamente le singole pratiche. Le evidenze vengono consolidate in un fascicolo unitario, utilizzabile sia in sede civile che penale.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Risultato.</strong> Lo schema fraudolento viene ricostruito e documentato; le pretese risarcitorie pendenti vengono respinte; gli elementi raccolti confluiscono in denuncia. Oltre al risparmio immediato, la compagnia acquisisce un modello di rilevazione replicabile sui portafogli a rischio.</p>
+              </div>
+            </div>
+          </article>
+
+          <article id="caso-telaio-clonato" class="reveal group scroll-mt-32 pt-10 lg:pt-12">
+            <div class="grid gap-4 sm:grid-cols-[72px,1fr] sm:gap-8">
+              <span class="track-label pt-2.5 text-navy/40 transition-colors duration-500 group-hover:text-navy/80" aria-hidden="true">03.2</span>
+              <div>
+                <h3 class="text-navy/80 transition-colors duration-500 group-hover:text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.6rem; line-height: 1.2;">La Trappola del Telaio Clonato</h3>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Scenario complesso.</strong> Un acquirente individua un'autovettura da 14.500 euro su un noto portale di annunci. Ogni elemento comunica sicurezza: prezzo congruo, venditore disponibile, incontro fissato — volutamente — davanti a un Comando di Polizia, passaggio di proprietà in agenzia. Il telaio risulta pulito; il venditore è l'effettivo intestatario al PRA. Due anni dopo, la Polizia sequestra il veicolo: è un "clone". Il numero di telaio originale — quello di un'auto rubata — era stato sovrascritto con quello di un esemplare identico e perfettamente regolare. L'auto viene restituita all'assicurazione del legittimo proprietario, vittima del furto originario. L'acquirente resta a piedi, con un danno superiore a 14.000 euro.</p>
+                <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Intervento della Regia.</strong> La regia assume il fascicolo dopo il sequestro, quando i margini sono già compromessi. Priorità assoluta: cristallizzare la buona fede dell'acquirente e la sua totale estraneità alla filiera del reato, neutralizzando ogni possibile profilo di incauto acquisto. In parallelo: ricostruzione documentale della catena di vendita con gli investigatori difensivi, individuazione del responsabile, attivazione delle iniziative penali e risarcitorie nei suoi confronti.</p>
+                 <p class="mt-4 text-[15px] leading-[1.85] text-slate-600"><strong class="font-medium text-navy">Risultato.</strong> La posizione dell'acquirente viene tutelata sul piano penale e le azioni verso il responsabile vengono incardinate. Ma il dato economico resta, e diventa il cuore della lezione: quando la forma è perfetta — documenti, visure, luoghi rassicuranti — la buona fede non restituisce i soldi. Lo schema si ripete identico negli acquisti di fascia alta, nelle forniture aziendali, nelle transazioni immobiliari. Da questo caso nasce il protocollo di verifica preventiva pre-acquisto dello Studio: l'analisi del rischio deve precedere la firma, non seguire il sequestro.</p>
+
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     CTA: CARD SOSPESA MODERNA (Galleggia sul bianco)
+============================================================= -->
+<div class="bg-white px-5 py-16 lg:px-8 lg:py-20">
+  <div class="mx-auto flex w-full max-w-7xl flex-col gap-10 rounded-[2rem] bg-[#101F44] p-10 shadow-2xl md:p-16 lg:flex-row lg:items-center lg:justify-between">
+    <div class="max-w-xl">
+      <p class="eyebrow eyebrow--light">Il primo passo</p>
+      <h2 class="mt-5 font-serif text-3xl font-medium leading-[1.15] text-white lg:text-4xl">
+        Ogni architettura legale inizia con un'analisi riservata del rischio.
+      </h2>
+    </div>
+    <a href="contatti.html" class="btn-white shrink-0">Richiedi Informazioni Riservate</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER ISTITUZIONALE (Redesign Gold Champagne)
+============================================================= -->
+<footer class="w-full bg-navy-deep text-slate-300">
+  <div class="mx-auto max-w-7xl px-5 pb-8 pt-16 lg:px-8">
+    
+    <!-- Griglia Dati -->
+    <div class="grid gap-12 pb-16 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr] lg:gap-16">
+      
+      <!-- Colonna 1: Brand -->
+      <div class="flex flex-col">
+        <div>
+          <img src="logo-footer.webp" alt="Logo Studio Legale Mazzotta" width="INSERISCI_LARGHEZZA" height="INSERISCI_ALTEZZA" class="h-14 w-auto">
+          <div class="-mt-1">
+            <p class="font-serif text-[17px] font-semibold tracking-[0.12em] text-white">STUDIO LEGALE MAZZOTTA</p>
+            <p class="-mt-1 text-[11px] font-semibold uppercase tracking-[0.4em] text-[#C1A87D]">Boutique Legale</p>
+          </div>
+        </div>
+        <p class="mt-8 text-[14.5px] leading-relaxed text-slate-300 max-w-sm">Una regia unica per la protezione dell'impresa e la valorizzazione del patrimonio</p>
+      </div>
+
+      <!-- Colonna 2: Dati Operativi (Sede + Dati Fiscali uniti per compattezza) -->
+      <div class="flex flex-col">
+        <h3 class="font-serif text-xl font-medium text-white">Sede & Dati</h3>
+        <div class="mt-3 mb-6 h-[2px] w-12 bg-[#C1A87D]"></div> <!-- Short Accent Line Gold -->
+        
+        <div class="space-y-6 text-sm">
+          <div>
+            <span class="block mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Sede Principale</span>
+            <p class="leading-snug text-slate-200">Via Alessandro Volta, 16<br>(Scala C, 7° piano)<br>20093 Cologno Monzese (MI)</p>
+          </div>
+          <div>
+            <span class="block mb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Dati Fiscali</span>
+            <p class="leading-snug text-slate-200">
+              P.IVA: <span class="text-white">10232740968</span><br>
+              C.F.: <span class="text-white">MZZDNL88E41C523I</span><br>
+              <span class="mt-1 block text-slate-400">Iscritta al Foro di Monza</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonna 3: Contatti (Spostati a destra, incolonnati) -->
+      <div class="flex flex-col">
+        <h3 class="font-serif text-xl font-medium text-white">Contatti Diretti</h3>
+        <div class="mt-3 mb-6 h-[2px] w-12 bg-[#C1A87D]"></div> <!-- Short Accent Line Gold -->
+        
+        <div class="flex flex-col space-y-4">
+          <!-- Telefono -->
+          <a href="tel:+393283313179" class="group flex items-center gap-4 transition-colors hover:text-white">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#C1A87D] transition-colors group-hover:border-[#C1A87D]/50 group-hover:bg-[#C1A87D]/10">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Chiama lo studio</span>
+              <span class="text-sm font-medium text-slate-200 group-hover:text-[#C1A87D] transition-colors">+39 328 331 3179</span>
+            </div>
+          </a>
+
+          <!-- Email -->
+          <a href="mailto:avv.danielamazzotta@gmail.com" class="group flex items-center gap-4 transition-colors hover:text-white">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#C1A87D] transition-colors group-hover:border-[#C1A87D]/50 group-hover:bg-[#C1A87D]/10">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Scrivici via Mail</span>
+              <span class="text-sm font-medium text-slate-200 group-hover:text-[#C1A87D] transition-colors">avv.danielamazzotta@gmail.com</span>
+            </div>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/393283313179" target="_blank" rel="noopener" class="group flex items-center gap-4 transition-colors hover:text-white">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#C1A87D] transition-colors group-hover:border-[#C1A87D]/50 group-hover:bg-[#C1A87D]/10">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-7.75 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/><path d="M8.7 8.5c.2-.4.4-.4.6-.4h.4c.15 0 .3.05.45.35.2.45.55 1.4.6 1.5.05.15.1.3-.05.5-.1.15-.2.25-.35.4-.15.15-.3.25-.15.5.15.3.65 1.1 1.4 1.75.85.75 1.5.95 1.8 1.1.3.15.45.1.6-.05.15-.15.6-.7.75-.9.15-.25.3-.2.5-.1.2.05 1.25.6 1.45.7.2.1.35.15.4.25.05.1.05.55-.15 1.05-.2.5-1.05.95-1.5 1-.4.05-.85.1-2.8-.65-2.35-.9-3.9-3.25-4.05-3.4-.15-.15-.95-1.2-.95-2.3s.55-1.6.8-1.85Z"/></svg>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Messaggio Rapido</span>
+              <span class="text-sm font-medium text-slate-200 group-hover:text-[#C1A87D] transition-colors">WhatsApp</span>
+            </div>
+          </a>
+
+          <!-- PEC — registro secondario, canale formale distinto dall'email ordinaria -->
+          <div class="mt-2 border-t border-white/5 pt-4">
+            <a href="mailto:daniela.mazzotta@monza.pecavvocati.it" class="group flex items-center gap-2.5 transition-colors">
+              <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 shrink-0 text-slate-500 transition-colors group-hover:text-[#C1A87D]" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span class="flex min-w-0 flex-col">
+                <span class="text-[9.5px] font-semibold uppercase tracking-wider text-white">Posta Certificata (PEC)</span>
+                <span class="break-words text-xs text-slate-400 transition-colors group-hover:text-[#C1A87D]">daniela.mazzotta@monza.pecavvocati.it</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="flex flex-wrap gap-x-8 gap-y-3 border-t border-[#C1A87D]/20 py-6 text-sm font-medium text-slate-300" aria-label="Mappa del sito">
+      <a href="index.html" class="transition hover:text-[#C1A87D]">Home</a>
+      <a href="modello-operativo.html" class="transition hover:text-[#C1A87D]">Modello Operativo</a>
+      <a href="funzioni-strategiche.html" class="transition hover:text-[#C1A87D]">Funzioni Strategiche</a>
+      <a href="casi-studio.html" class="transition hover:text-[#C1A87D]">Casi Studio</a>
+      <a href="contatti.html" class="transition hover:text-[#C1A87D]">Contatti</a>
+    </nav>
+
+    <!-- Copyright -->
+    <div class="flex flex-col gap-3 border-t border-white/5 pt-6 text-[11px] uppercase tracking-wider text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+      <p>© 2026 Studio Legale Mazzotta — Tutti i diritti riservati</p>
+      <div class="flex flex-wrap gap-x-6 gap-y-2">
+        <a href="privacy-policy.html" class="transition hover:text-slate-300">Privacy Policy</a>
+        <a href="cookie-policy.html" class="transition hover:text-slate-300">Cookie Policy</a>
+        <a href="termini-e-condizioni.html" class="transition hover:text-slate-300">Termini e Condizioni</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Header: ombra allo scroll ---------- */
+  var header = document.getElementById('siteHeader');
+  function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Menu mobile ---------- */
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var iconOpen = document.getElementById('iconOpen');
+  var iconClose = document.getElementById('iconClose');
+
+  function setMenu(open) {
+    mobileMenu.classList.toggle('hidden', !open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  menuBtn.addEventListener('click', function () {
+    setMenu(mobileMenu.classList.contains('hidden'));
+  });
+  mobileMenu.querySelectorAll('a, button').forEach(function (el) {
+    el.addEventListener('click', function () { setMenu(false); });
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>
