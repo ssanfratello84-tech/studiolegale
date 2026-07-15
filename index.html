@@ -128,7 +128,7 @@
   }
 
   /* ---- Nav ---- */
-  #siteHeader { transition: box-shadow .3s ease; }
+  #siteHeader { transition: box-shadow .3s ease, transform .45s cubic-bezier(0.22, 1, 0.36, 1); }
   #siteHeader.is-scrolled { box-shadow: 0 1px 0 rgba(16,31,68,.06), 0 12px 32px -20px rgba(16,31,68,.16); }
 
   .nav-link { position: relative; font-size: .9rem; color: #4A5568; transition: color .25s ease; }
@@ -610,11 +610,36 @@
 (function () {
   'use strict';
 
-  /* ---------- Header: ombra allo scroll ---------- */
+  /* ---------- Header: comparsa/scomparsa intelligente e ombra ---------- */
   var header = document.getElementById('siteHeader');
-  function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
-  onScroll();
+  var lastScroll = 0;
+  
+  // Aggiungiamo le classi per un'animazione fluida dell'header
+  header.classList.add('transition-transform', 'duration-300', 'ease-in-out');
+
+  function onScroll() { 
+    var currentScroll = window.scrollY || document.documentElement.scrollTop;
+    var mobileMenu = document.getElementById('mobileMenu');
+    var isMenuOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
+    
+    // 1. Ombra allo scroll (si attiva dopo 8px)
+    header.classList.toggle('is-scrolled', currentScroll > 8);
+    
+    // 2. Scomparsa/Comparsa intelligente (non si nasconde se il menu mobile è aperto)
+    if (!isMenuOpen) {
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        // Se scorri verso il basso (e sei sceso di almeno 80px): nascondi l'header in alto
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        // Se scorri verso l'alto: fai riapparire l'header
+        header.style.transform = 'translateY(0)';
+      }
+    }
+    
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+  }
   window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // Inizializza lo stato al caricamento
 
   /* ---------- Menu mobile ---------- */
   var menuBtn = document.getElementById('menuBtn');
