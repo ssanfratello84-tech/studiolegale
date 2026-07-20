@@ -193,6 +193,13 @@
     font-size: .66rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
     color: rgba(16,31,68,.45); transition: color .3s ease;
   }
+  /* L'espansione invisibile: rende l'intera card un'area cliccabile */
+  .card-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
   .card-cta svg { transition: transform .3s ease; }
   .card:hover .card-cta { color: #101F44; }
   .card:hover .card-cta svg { color: #C1A87D; transform: translateX(4px); }
