@@ -482,12 +482,11 @@
       </div>
 
       <!-- Margine finale coerente e link perfettamente centrato -->
-      <div class="reveal mt-12 text-center lg:mt-16">
-        <a href="aree-di-tutela.html" class="link-arrow">
-          <!-- Questo SVG invisibile a sinistra bilancia esattamente l'ingombro della freccia a destra -->
-          <svg viewBox="0 0 20 10" class="h-2.5 w-5 opacity-0" aria-hidden="true"></svg>
-          Esplora tutte le Aree di Tutela
-          <svg viewBox="0 0 20 10" class="h-2.5 w-5" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 5h17M14 1l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="reveal mt-10 flex justify-center lg:mt-16">
+        <a href="aree-di-tutela.html" class="link-arrow inline-flex flex-col items-center !gap-2 sm:flex-row sm:!gap-[.6rem]">
+          <span class="hidden w-5 sm:block" aria-hidden="true"></span>
+          <span class="text-center leading-relaxed">Esplora tutte le Aree di Tutela</span>
+          <svg viewBox="0 0 20 10" class="h-2.5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 5h17M14 1l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
 
@@ -498,14 +497,19 @@
      CTA: CARD SOSPESA MODERNA (Galleggia sul bianco)
 ============================================================= -->
 <div class="bg-white px-5 pb-16 pt-6 lg:px-8 lg:pb-20 lg:pt-10">
-  <div class="mx-auto flex w-full max-w-7xl flex-col gap-10 rounded-[2rem] bg-[#101F44] p-10 shadow-2xl md:p-16 lg:flex-row lg:items-center lg:justify-between">
+  <!-- Ridotto il padding interno su mobile (da p-10 a p-8) per dare più respiro al testo -->
+  <div class="mx-auto flex w-full max-w-7xl flex-col gap-8 rounded-[2rem] bg-[#101F44] p-8 shadow-2xl sm:p-10 md:p-16 lg:flex-row lg:items-center lg:justify-between">
     <div class="max-w-xl">
       <p class="eyebrow eyebrow--light">Il primo passo</p>
-      <h2 class="mt-5 font-serif text-3xl font-medium leading-[1.15] text-white lg:text-4xl">
+      <h2 class="mt-4 font-serif text-[28px] font-medium leading-[1.2] text-white sm:text-3xl lg:mt-5 lg:text-4xl">
         Ogni incarico inizia con un esame riservato della posizione
       </h2>
     </div>
-    <a href="contatti.html#contactForm" class="btn-white shrink-0">Richiedi un colloquio riservato</a>
+    <!-- Bottone allineato a sinistra, copy adattivo per mantenere la forma a pillola su smartphone -->
+    <a href="contatti.html#contactForm" class="btn-white shrink-0 self-start px-6 sm:px-[1.9rem]">
+      <span class="sm:hidden">Richiedi un colloquio</span>
+      <span class="hidden sm:inline">Richiedi un colloquio riservato</span>
+    </a>
   </div>
 </div>
 
