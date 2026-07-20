@@ -268,6 +268,8 @@
                  è un dito (telefono, tablet senza mouse), non una soglia di larghezza:
                  un laptop con touchscreen ma mouse collegato resta sul <select> nativo. */
               .chip-group { display: flex; flex-wrap: wrap; gap: .65rem; }
+              .chip-ui.chip-group { flex-direction: column; flex-wrap: nowrap; align-items: stretch; }
+              .chip-ui.chip-group .chip { width: 100%; justify-content: flex-start; text-align: left; }
               .chip {
                 display: inline-flex; align-items: center; justify-content: center;
                 min-height: 44px; padding: .6rem 1.35rem; border-radius: 9999px;
