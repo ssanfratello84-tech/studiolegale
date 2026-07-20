@@ -661,21 +661,58 @@
     el.addEventListener('click', function () { setMenu(false); });
   });
 
-  /* ---------- Effetto Hover Mobile (Scroll) ---------- */
-  var cardObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      // Usiamo la larghezza dello schermo per attivare l'effetto sotto i 1024px
-      if (window.innerWidth < 1024) {
-        entry.target.classList.toggle('is-active', entry.isIntersecting);
-      } else {
-        entry.target.classList.remove('is-active'); // Su desktop pulisce la classe
+  /* ---------- Effetto Hover Mobile (Focus Singolo) ---------- */
+  var visibleCards = new Set();
+
+  function updateActiveCard() {
+    // Su desktop, spegniamo le animazioni scroll per far funzionare il mouse
+    if (window.innerWidth >= 1024) {
+      visibleCards.forEach(function(card) { card.classList.remove('is-active'); });
+      return;
+    }
+    
+    var closestCard = null;
+    var minDistance = Infinity;
+    var centerY = window.innerHeight / 2; // Il centro esatto dello schermo
+
+    // Troviamo quale riquadro (tra quelli visibili) è matematicamente più vicino al centro
+    visibleCards.forEach(function(card) {
+      var rect = card.getBoundingClientRect();
+      var cardCenterY = rect.top + (rect.height / 2); // Centro del riquadro
+      var distance = Math.abs(centerY - cardCenterY); // Distanza dal centro dello schermo
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestCard = card;
       }
     });
-  }, { rootMargin: '-20% 0px -20% 0px' }); // Area tollerante al 60% centrale dello schermo
+
+    // Accendiamo SOLO il riquadro vincitore e spegniamo gli altri
+    visibleCards.forEach(function(card) {
+      card.classList.toggle('is-active', card === closestCard);
+    });
+  }
+
+  // L'Observer ora serve solo a dirci quali riquadri sono effettivamente entrati nello schermo
+  var cardObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        visibleCards.add(entry.target);
+      } else {
+        visibleCards.delete(entry.target);
+        entry.target.classList.remove('is-active');
+      }
+    });
+    updateActiveCard();
+  }, { rootMargin: '0px 0px 0px 0px' });
 
   document.querySelectorAll('.card').forEach(function(card) {
     cardObserver.observe(card);
   });
+
+  // Ricalcoliamo al volo durante lo scorrimento
+  window.addEventListener('scroll', updateActiveCard, { passive: true });
+  window.addEventListener('resize', updateActiveCard, { passive: true });
 
   /* ---------- Reveal on scroll ---------- */
   var reveals = document.querySelectorAll('.reveal');
