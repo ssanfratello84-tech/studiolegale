@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* Previene i salti di stile e forza un rendering tipografico uniforme */
+  body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Stabilizza il corsivo istituzionale evitando scompensi di peso al primo render */
+  em {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+  }
+}
+
+@layer components {
+  /* UX Menu Mobile: Evidenzia la pagina corrente */
+  #mobileMenu a[aria-current="page"] {
+    @apply text-navy font-semibold;
+  }
+}
