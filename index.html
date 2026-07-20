@@ -235,6 +235,18 @@
     .reveal { opacity: 1; transform: none; transition: none; }
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
+  /* ---- Animazione Freccia Continua (Micro-interazione CTA) ---- */
+  @keyframes pulse-arrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+  }
+  .animate-arrow svg {
+    animation: pulse-arrow 1.8s ease-in-out infinite;
+    color: #C1A87D; /* Fissiamo la freccia sul colore oro per dare massimo risalto */
+  }
+  .link-arrow.animate-arrow:hover svg {
+    animation: none; /* Il passaggio del mouse blocca il loop e attiva l'hover standard */
+  }
 </style>
 <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
@@ -481,11 +493,10 @@
         </div>
       </div>
 
-      <!-- Margine finale coerente e link perfettamente centrato -->
+      <!-- Margine finale coerente e link perfettamente centrato con animazione -->
       <div class="reveal mt-10 flex justify-center lg:mt-16">
-        <a href="aree-di-tutela.html" class="link-arrow inline-flex flex-col items-center !gap-2 sm:flex-row sm:!gap-[.6rem]">
-          <span class="hidden w-5 sm:block" aria-hidden="true"></span>
-          <span class="text-center leading-relaxed">Esplora tutte le Aree di Tutela</span>
+        <a href="aree-di-tutela.html" class="link-arrow animate-arrow">
+          <span>Esplora le Aree di Tutela</span>
           <svg viewBox="0 0 20 10" class="h-2.5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 5h17M14 1l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
