@@ -80,22 +80,7 @@
 <link rel="preload" href="fonts/instrument-sans-v4-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts.css">
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          navy: { DEFAULT: '#101F44', deep: '#0B1631' }
-        },
-        fontFamily: {
-          serif: ['"Cormorant Garamond"', 'Georgia', '"Times New Roman"', 'serif'],
-          sans: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
-        }
-      }
-    }
-  };
-</script>
+<link rel="stylesheet" href="styles.css">
 
 <style>
   ::selection { background: #101F44; color: #ffffff; }
@@ -746,7 +731,18 @@
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-    reveals.forEach(function (el) { io.observe(el); });
+    reveals.forEach(function (el) {
+      /* Elementi già in viewport al load: visibili subito, senza animazione */
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
+        el.style.transition = 'none';
+        el.classList.add('is-visible');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { el.style.transition = ''; });
+        });
+      } else {
+        io.observe(el);
+      }
+    });
   } else {
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
