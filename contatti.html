@@ -262,9 +262,36 @@
 
         <form action="https://submit-form.com/ZFnyofYMg" method="POST" id="contactForm" class="mt-12 scroll-mt-28 space-y-6">
             
+            <style>
+              /* ---- Selettore ibrido: <select> nativo su desktop, chips su touch ----
+                 hover:none + pointer:coarse intercetta il dispositivo il cui input primario
+                 è un dito (telefono, tablet senza mouse), non una soglia di larghezza:
+                 un laptop con touchscreen ma mouse collegato resta sul <select> nativo. */
+              .chip-group { display: flex; flex-wrap: wrap; gap: .65rem; }
+              .chip {
+                display: inline-flex; align-items: center; justify-content: center;
+                min-height: 44px; padding: .6rem 1.35rem; border-radius: 9999px;
+                border: 1px solid #DFE4EE; background: #ffffff; color: #101F44;
+                font-size: .875rem; font-weight: 500; line-height: 1.3; text-align: center;
+                cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+                transition: background-color .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease;
+              }
+              .chip:hover { border-color: #C1A87D; }
+              .chip:focus-visible { outline: 2px solid #101F44; outline-offset: 2px; }
+              .chip.is-active { background: #101F44; border-color: #101F44; color: #ffffff; box-shadow: 0 4px 14px rgba(16,31,68,.18); }
+              .chip.is-active:hover { border-color: #C1A87D; }
+              .chip-sm { font-size: .8125rem; padding: .55rem 1.1rem; }
+              .select-ui { display: block; }
+              .chip-ui { display: none; }
+              @media (hover: none) and (pointer: coarse) {
+                .select-ui { display: none !important; }
+                .chip-ui { display: flex !important; }
+              }
+            </style>
+
             <div>
-              <label for="soggetto" class="field-label">Tipo di Richiedente *</label>
-              <select id="soggetto" name="soggetto" class="field" required>
+              <label class="field-label" id="soggetto_label">Tipo di Richiedente *</label>
+              <select id="soggetto_select" aria-labelledby="soggetto_label" class="field select-ui" required>
                 <option value="">Seleziona...</option>
                 <option value="azienda">Impresa / Corporate</option>
                 <option value="privato">Privato / Gestione Patrimonio</option>
@@ -273,11 +300,20 @@
                 <option value="professionista">Professionista / Studio Tecnico</option>
                 <option value="altro">Altro / Richiesta di Consulenza Generale</option>
               </select>
+              <div class="chip-group chip-ui" role="radiogroup" aria-labelledby="soggetto_label" aria-required="true">
+                <button type="button" class="chip" data-soggetto="azienda" role="radio" aria-checked="false">Impresa / Corporate</button>
+                <button type="button" class="chip" data-soggetto="privato" role="radio" aria-checked="false">Privato / Gestione Patrimonio</button>
+                <button type="button" class="chip" data-soggetto="assicurazione" role="radio" aria-checked="false">Compagnia Assicurativa / Intermediario</button>
+                <button type="button" class="chip" data-soggetto="ente" role="radio" aria-checked="false">Ente / Istituzione</button>
+                <button type="button" class="chip" data-soggetto="professionista" role="radio" aria-checked="false">Professionista / Studio Tecnico</button>
+                <button type="button" class="chip" data-soggetto="altro" role="radio" aria-checked="false">Altro / Richiesta di Consulenza Generale</button>
+              </div>
+              <input type="hidden" id="soggetto" name="soggetto">
             </div>
 
             <div id="gruppo_azienda" class="hidden">
-              <label for="area_azienda" class="field-label">Area di Interesse *</label>
-              <select id="area_azienda" name="area_azienda" class="field logic-submenu">
+              <label class="field-label" id="area_azienda_label">Area di Interesse *</label>
+              <select id="area_azienda_select" aria-labelledby="area_azienda_label" class="field select-ui logic-submenu">
                 <option value="">Seleziona l'area...</option>
                 <option value="gestione_rischio_patrimonio">Gestione del rischio e tutela del patrimonio aziendale</option>
                 <option value="contrattualistica">Contrattualistica e accordi commerciali</option>
@@ -287,11 +323,21 @@
                 <option value="diritto_lavoro_sindacale">Diritto del lavoro e relazioni sindacali</option>
                 <option value="altro">Altro</option>
               </select>
+              <div class="chip-group chip-ui" role="radiogroup" aria-labelledby="area_azienda_label">
+                <button type="button" class="chip chip-sm" data-area="gestione_rischio_patrimonio" role="radio" aria-checked="false">Gestione del rischio e tutela del patrimonio aziendale</button>
+                <button type="button" class="chip chip-sm" data-area="contrattualistica" role="radio" aria-checked="false">Contrattualistica e accordi commerciali</button>
+                <button type="button" class="chip chip-sm" data-area="conformita_normativa" role="radio" aria-checked="false">Conformità normativa e modelli organizzativi</button>
+                <button type="button" class="chip chip-sm" data-area="responsabilita_penale_impresa" role="radio" aria-checked="false">Responsabilità penale d'impresa</button>
+                <button type="button" class="chip chip-sm" data-area="recupero_crediti_commerciale" role="radio" aria-checked="false">Recupero crediti e contenzioso commerciale</button>
+                <button type="button" class="chip chip-sm" data-area="diritto_lavoro_sindacale" role="radio" aria-checked="false">Diritto del lavoro e relazioni sindacali</button>
+                <button type="button" class="chip chip-sm" data-area="altro" role="radio" aria-checked="false">Altro</button>
+              </div>
+              <input type="hidden" id="area_azienda" name="area_azienda">
             </div>
 
             <div id="gruppo_privato" class="hidden">
-              <label for="area_privato" class="field-label">Area di Interesse *</label>
-              <select id="area_privato" name="area_privato" class="field logic-submenu">
+              <label class="field-label" id="area_privato_label">Area di Interesse *</label>
+              <select id="area_privato_select" aria-labelledby="area_privato_label" class="field select-ui logic-submenu">
                 <option value="">Seleziona l'area...</option>
                 <option value="difesa_penale_querele">Difesa penale e assistenza per denunce/querele</option>
                 <option value="risarcimento_danni">Risarcimento danni e infortuni</option>
@@ -300,13 +346,22 @@
                 <option value="diritto_famiglia">Diritto di famiglia (separazioni, divorzi, tutela dei minori)</option>
                 <option value="altro">Altro</option>
               </select>
+              <div class="chip-group chip-ui" role="radiogroup" aria-labelledby="area_privato_label">
+                <button type="button" class="chip chip-sm" data-area="difesa_penale_querele" role="radio" aria-checked="false">Difesa penale e assistenza per denunce/querele</button>
+                <button type="button" class="chip chip-sm" data-area="risarcimento_danni" role="radio" aria-checked="false">Risarcimento danni e infortuni</button>
+                <button type="button" class="chip chip-sm" data-area="problemi_lavoro_licenziamenti" role="radio" aria-checked="false">Problemi sul lavoro e licenziamenti</button>
+                <button type="button" class="chip chip-sm" data-area="tutela_patrimonio_successioni" role="radio" aria-checked="false">Tutela del patrimonio personale e successioni</button>
+                <button type="button" class="chip chip-sm" data-area="diritto_famiglia" role="radio" aria-checked="false">Diritto di famiglia (separazioni, divorzi, tutela dei minori)</button>
+                <button type="button" class="chip chip-sm" data-area="altro" role="radio" aria-checked="false">Altro</button>
+              </div>
+              <input type="hidden" id="area_privato" name="area_privato">
             </div>
 
             <!-- Sottogruppo Amministratore rimosso per riposizionamento target -->
 
             <div id="gruppo_professionista" class="hidden">
-              <label for="area_professionista" class="field-label">Area di Interesse *</label>
-              <select id="area_professionista" name="area_professionista" class="field logic-submenu">
+              <label class="field-label" id="area_professionista_label">Area di Interesse *</label>
+              <select id="area_professionista_select" aria-labelledby="area_professionista_label" class="field select-ui logic-submenu">
                 <option value="">Seleziona l'area...</option>
                 <option value="responsabilita_professionale">Difesa per responsabilità professionale (malpractice)</option>
                 <option value="accordi_collaborazione_studi">Accordi di collaborazione e costituzione di studi associati</option>
@@ -314,11 +369,19 @@
                 <option value="consulenza_normativa_albo">Consulenza su normative di settore e albo</option>
                 <option value="altro">Altro</option>
               </select>
+              <div class="chip-group chip-ui" role="radiogroup" aria-labelledby="area_professionista_label">
+                <button type="button" class="chip chip-sm" data-area="responsabilita_professionale" role="radio" aria-checked="false">Difesa per responsabilità professionale (malpractice)</button>
+                <button type="button" class="chip chip-sm" data-area="accordi_collaborazione_studi" role="radio" aria-checked="false">Accordi di collaborazione e costituzione di studi associati</button>
+                <button type="button" class="chip chip-sm" data-area="tutela_credito_compensi" role="radio" aria-checked="false">Tutela del credito professionale e compensi</button>
+                <button type="button" class="chip chip-sm" data-area="consulenza_normativa_albo" role="radio" aria-checked="false">Consulenza su normative di settore e albo</button>
+                <button type="button" class="chip chip-sm" data-area="altro" role="radio" aria-checked="false">Altro</button>
+              </div>
+              <input type="hidden" id="area_professionista" name="area_professionista">
             </div>
 
             <div id="gruppo_assicurazione" class="hidden">
-              <label for="area_assicurazione" class="field-label">Area di Interesse *</label>
-              <select id="area_assicurazione" name="area_assicurazione" class="field logic-submenu">
+              <label class="field-label" id="area_assicurazione_label">Area di Interesse *</label>
+              <select id="area_assicurazione_select" aria-labelledby="area_assicurazione_label" class="field select-ui logic-submenu">
                 <option value="">Seleziona l'area...</option>
                 <option value="contrasto_frodi">Contrasto alle frodi assicurative e indagini difensive</option>
                 <option value="gestione_sinistri_complessi">Valutazione e gestione di sinistri complessi</option>
@@ -326,17 +389,32 @@
                 <option value="azioni_rivalsa_recupero">Azioni di rivalsa e recupero</option>
                 <option value="altro">Altro</option>
               </select>
+              <div class="chip-group chip-ui" role="radiogroup" aria-labelledby="area_assicurazione_label">
+                <button type="button" class="chip chip-sm" data-area="contrasto_frodi" role="radio" aria-checked="false">Contrasto alle frodi assicurative e indagini difensive</button>
+                <button type="button" class="chip chip-sm" data-area="gestione_sinistri_complessi" role="radio" aria-checked="false">Valutazione e gestione di sinistri complessi</button>
+                <button type="button" class="chip chip-sm" data-area="analisi_rischio_pareristica" role="radio" aria-checked="false">Analisi del rischio assicurativo e pareristica</button>
+                <button type="button" class="chip chip-sm" data-area="azioni_rivalsa_recupero" role="radio" aria-checked="false">Azioni di rivalsa e recupero</button>
+                <button type="button" class="chip chip-sm" data-area="altro" role="radio" aria-checked="false">Altro</button>
+              </div>
+              <input type="hidden" id="area_assicurazione" name="area_assicurazione">
             </div>
 
             <div id="gruppo_ente" class="hidden">
-              <label for="area_ente" class="field-label">Area di Interesse *</label>
-              <select id="area_ente" name="area_ente" class="field logic-submenu">
+              <label class="field-label" id="area_ente_label">Area di Interesse *</label>
+              <select id="area_ente_select" aria-labelledby="area_ente_label" class="field select-ui logic-submenu">
                 <option value="">Seleziona l'area...</option>
                 <option value="statuti_regolamenti_conformita">Statuti, regolamenti e conformità normativa</option>
                 <option value="responsabilita_organi_direttivi">Responsabilità civile e penale degli organi direttivi</option>
                 <option value="rapporti_enti_pubblici">Gestione dei rapporti con enti pubblici e terzi</option>
                 <option value="altro">Altro</option>
               </select>
+              <div class="chip-group chip-ui" role="radiogroup" aria-labelledby="area_ente_label">
+                <button type="button" class="chip chip-sm" data-area="statuti_regolamenti_conformita" role="radio" aria-checked="false">Statuti, regolamenti e conformità normativa</button>
+                <button type="button" class="chip chip-sm" data-area="responsabilita_organi_direttivi" role="radio" aria-checked="false">Responsabilità civile e penale degli organi direttivi</button>
+                <button type="button" class="chip chip-sm" data-area="rapporti_enti_pubblici" role="radio" aria-checked="false">Gestione dei rapporti con enti pubblici e terzi</button>
+                <button type="button" class="chip chip-sm" data-area="altro" role="radio" aria-checked="false">Altro</button>
+              </div>
+              <input type="hidden" id="area_ente" name="area_ente">
             </div>
 
             <div id="gruppo_ragione_sociale" class="hidden">
@@ -646,8 +724,18 @@
       el.addEventListener('click', () => setMenu(false));
     });
 
-    /* ---------- Form Logic Dinamica ---------- */
-    const soggettoSelect = document.getElementById('soggetto');
+    /* ---------- Form Logic Dinamica (select desktop + chips touch, un solo hidden input) ---------- */
+    const soggettoInput = document.getElementById('soggetto');
+    const soggettoSelectEl = document.getElementById('soggetto_select');
+    const soggettoChips = document.querySelectorAll('[data-soggetto]');
+    const soggettoLabels = {
+      'azienda': 'Impresa / Corporate',
+      'privato': 'Privato / Gestione Patrimonio',
+      'assicurazione': 'Compagnia Assicurativa / Intermediario',
+      'ente': 'Ente / Istituzione',
+      'professionista': 'Professionista / Studio Tecnico',
+      'altro': 'Altro / Richiesta di Consulenza Generale'
+    };
     const subGroups = {
       'azienda': document.getElementById('gruppo_azienda'),
       'privato': document.getElementById('gruppo_privato'),
@@ -655,8 +743,16 @@
       'assicurazione': document.getElementById('gruppo_assicurazione'),
       'ente': document.getElementById('gruppo_ente')
     };
-    
-    const subSelects = {
+
+    const subSelectEls = {
+      'azienda': document.getElementById('area_azienda_select'),
+      'privato': document.getElementById('area_privato_select'),
+      'professionista': document.getElementById('area_professionista_select'),
+      'assicurazione': document.getElementById('area_assicurazione_select'),
+      'ente': document.getElementById('area_ente_select')
+    };
+
+    const subInputs = {
       'azienda': document.getElementById('area_azienda'),
       'privato': document.getElementById('area_privato'),
       'professionista': document.getElementById('area_professionista'),
@@ -664,20 +760,30 @@
       'ente': document.getElementById('area_ente')
     };
 
+    // Etichetta leggibile per ogni area (usata nell'oggetto email), presa dalle chip:
+    // i value delle chip e delle <option> corrispondenti sono identici per costruzione.
+    const areaLabels = {};
+    Object.keys(subInputs).forEach(key => {
+      areaLabels[key] = {};
+      subGroups[key].querySelectorAll('[data-area]').forEach(btn => {
+        areaLabels[key][btn.dataset.area] = btn.textContent.trim();
+      });
+    });
+
     const messaggioField = document.getElementById('messaggio');
     const messaggioLabel = document.getElementById('messaggio_label');
 
     // Funzione per validare lo stato del Messaggio
     function checkMessaggioRequirement() {
       let requiresMessage = false;
-      const currentSoggetto = soggettoSelect.value;
+      const currentSoggetto = soggettoInput.value;
 
       // Selezionato "Altro" nel selettore primario
       if (currentSoggetto === 'altro') {
         requiresMessage = true;
       } 
       // Selezionato "Altro" all'interno di un sottomenu attivo
-      else if (subSelects[currentSoggetto] && subSelects[currentSoggetto].value === 'altro') {
+      else if (subInputs[currentSoggetto] && subInputs[currentSoggetto].value === 'altro') {
         requiresMessage = true;
       }
 
@@ -697,27 +803,40 @@
     const gruppoRagioneSociale = document.getElementById('gruppo_ragione_sociale');
     const ragioneSocialeField = document.getElementById('ragione_sociale');
 
-    // Gestione del cambio sul Tipo di Richiedente
-    soggettoSelect.addEventListener('change', () => {
-      const currentSoggetto = soggettoSelect.value;
+    // Selezione del Tipo di Richiedente: chiamata sia dal <select> (desktop) sia dalle chip (touch),
+    // così le due UI restano sempre allineate anche se il dispositivo cambia modalità a metà (es. tablet ruotato).
+    function selectSoggetto(value) {
+      soggettoInput.value = value;
+      soggettoSelectEl.value = value;
+
+      soggettoChips.forEach(chip => {
+        const active = chip.dataset.soggetto === value;
+        chip.classList.toggle('is-active', active);
+        chip.setAttribute('aria-checked', active ? 'true' : 'false');
+      });
 
       // 1. Nascondi e resetta tutti i sottomenu
       for (const key in subGroups) {
         subGroups[key].classList.add('hidden');
         subGroups[key].classList.remove('block');
-        subSelects[key].required = false;
-        subSelects[key].value = ''; 
+        subSelectEls[key].required = false;
+        subSelectEls[key].value = '';
+        subInputs[key].value = '';
+        subGroups[key].querySelectorAll('[data-area]').forEach(btn => {
+          btn.classList.remove('is-active');
+          btn.setAttribute('aria-checked', 'false');
+        });
       }
 
       // 2. Mostra e rendi obbligatorio il sottomenu corrispondente
-      if (subGroups[currentSoggetto]) {
-        subGroups[currentSoggetto].classList.remove('hidden');
-        subGroups[currentSoggetto].classList.add('block');
-        subSelects[currentSoggetto].required = true;
+      if (subGroups[value]) {
+        subGroups[value].classList.remove('hidden');
+        subGroups[value].classList.add('block');
+        subSelectEls[value].required = true;
       }
 
       // 2b. Mostra/nascondi Ragione Sociale in base alla categoria
-      if (categorieConRagioneSociale.includes(currentSoggetto)) {
+      if (categorieConRagioneSociale.includes(value)) {
         gruppoRagioneSociale.classList.remove('hidden');
         ragioneSocialeField.required = true;
       } else {
@@ -728,17 +847,37 @@
 
       // 3. Valida il campo messaggio
       checkMessaggioRequirement();
+    }
+
+    soggettoSelectEl.addEventListener('change', () => selectSoggetto(soggettoSelectEl.value));
+    soggettoChips.forEach(chip => {
+      chip.addEventListener('click', () => selectSoggetto(chip.dataset.soggetto));
     });
 
-    // Aggiungi event listener a tutti i sottomenu
-    for (const key in subSelects) {
-      subSelects[key].addEventListener('change', checkMessaggioRequirement);
+    // Selezione dell'Area di Interesse: idem, chiamata da <select> o da chip.
+    function selectArea(key, value) {
+      subInputs[key].value = value;
+      subSelectEls[key].value = value;
+      subGroups[key].querySelectorAll('[data-area]').forEach(btn => {
+        const active = btn.dataset.area === value;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-checked', active ? 'true' : 'false');
+      });
+      checkMessaggioRequirement();
     }
+
+    Object.keys(subInputs).forEach(key => {
+      subSelectEls[key].addEventListener('change', () => selectArea(key, subSelectEls[key].value));
+      subGroups[key].querySelectorAll('[data-area]').forEach(btn => {
+        btn.addEventListener('click', () => selectArea(key, btn.dataset.area));
+      });
+    });
 
     /* ---------- Invio richiesta a Formspark ---------- */
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const formError = document.getElementById('formError');
+    const formErrorDefaultHTML = formError.innerHTML;
     const formSuccess = document.getElementById('formSuccess');
 
     if (contactForm) {
@@ -746,16 +885,31 @@
         e.preventDefault();
         formError.classList.add('hidden');
 
-        const soggettoOpt = soggettoSelect.options[soggettoSelect.selectedIndex];
-        const categoria = soggettoOpt ? soggettoOpt.text : '';
-        const currentSoggetto = soggettoSelect.value;
+        const currentSoggetto = soggettoInput.value;
+
+        // Rete di sicurezza per il percorso touch/chip: su desktop il <select required>
+        // blocca già nativamente il submit prima che questo codice venga eseguito.
+        if (!currentSoggetto) {
+          formError.innerHTML = 'Seleziona il tipo di richiedente per continuare.';
+          formError.classList.remove('hidden');
+          submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        if (subInputs[currentSoggetto] && !subInputs[currentSoggetto].value) {
+          formError.innerHTML = 'Seleziona un\'area di interesse per continuare.';
+          formError.classList.remove('hidden');
+          subGroups[currentSoggetto].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        formError.innerHTML = formErrorDefaultHTML;
+
+        const categoria = soggettoLabels[currentSoggetto] || '';
 
         // Recupera l'etichetta leggibile dell'area selezionata, se presente
         let area = '';
-        if (subSelects[currentSoggetto]) {
-          const areaSelect = subSelects[currentSoggetto];
-          const areaOpt = areaSelect.options[areaSelect.selectedIndex];
-          area = (areaOpt && areaOpt.value) ? areaOpt.text : '';
+        if (subInputs[currentSoggetto]) {
+          const areaValue = subInputs[currentSoggetto].value;
+          area = (areaValue && areaLabels[currentSoggetto][areaValue]) ? areaLabels[currentSoggetto][areaValue] : '';
         }
 
         const nome = document.getElementById('nome').value.trim();
