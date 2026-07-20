@@ -6,6 +6,10 @@ on:
     paths-ignore:
       - 'styles.css'
 
+# SBLOCCO DEFINITIVO DEI PERMESSI
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
