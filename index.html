@@ -235,17 +235,26 @@
     .reveal { opacity: 1; transform: none; transition: none; }
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
-  /* ---- Animazione Freccia Continua (Micro-interazione CTA) ---- */
-  @keyframes pulse-arrow {
+  /* ---- Animazione Freccia (Micro-interazione focus singolo) ---- */
+  @keyframes pulse-arrow-subtle {
     0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(5px); }
+    50% { transform: translateX(3px); } /* Movimento ridotto da 5px a 3px per massima eleganza */
   }
-  .animate-arrow svg {
-    animation: pulse-arrow 1.8s ease-in-out infinite;
-    color: #C1A87D; /* Fissiamo la freccia sul colore oro per dare massimo risalto */
+  
+  /* Attivazione esclusiva pilotata dal JS su mobile */
+  .card.is-active .card-cta svg,
+  .link-arrow.is-active svg {
+    animation: pulse-arrow-subtle 1.5s ease-in-out infinite;
+    color: #C1A87D;
   }
-  .link-arrow.animate-arrow:hover svg {
-    animation: none; /* Il passaggio del mouse blocca il loop e attiva l'hover standard */
+  
+  /* Mantiene il comportamento standard su Desktop (hover) */
+  @media (hover: hover) {
+    .card:hover .card-cta svg,
+    .link-arrow:hover svg {
+      animation: pulse-arrow-subtle 1.5s ease-in-out infinite;
+      color: #C1A87D;
+    }
   }
 </style>
 <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
@@ -341,7 +350,7 @@
 
         <div class="mt-14 lg:mt-auto flex flex-col sm:flex-row lg:flex-nowrap items-center sm:justify-start gap-4 lg:gap-x-7">
           <a href="contatti.html#contactForm" class="btn-primary w-full sm:w-auto text-center px-8 py-4 lg:py-3.5 text-[15px] lg:text-[0.875rem]">Richiedi un colloquio riservato</a>
-          <a href="metodo-forense.html" class="link-arrow flex items-center justify-center w-full sm:w-auto py-2 lg:py-0">
+          <a href="metodo-forense.html" class="link-arrow js-single-arrow flex items-center justify-center w-full sm:w-auto py-2 lg:py-0">
             Scopri il Metodo Forense
             <svg viewBox="0 0 20 10" class="h-2.5 w-5" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 5h17M14 1l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -493,9 +502,9 @@
         </div>
       </div>
 
-      <!-- Margine finale coerente e link perfettamente centrato con animazione -->
-      <div class="reveal mt-10 flex justify-center lg:mt-16">
-        <a href="aree-di-tutela.html" class="link-arrow animate-arrow">
+      <!-- Link perfettamente centrato nello spazio bianco + Classe JS per animazione singola -->
+      <div class="reveal mt-20 flex justify-center lg:mt-24">
+        <a href="aree-di-tutela.html" class="link-arrow js-single-arrow">
           <span>Esplora le Aree di Tutela</span>
           <svg viewBox="0 0 20 10" class="h-2.5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 5h17M14 1l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -676,58 +685,57 @@
     el.addEventListener('click', function () { setMenu(false); });
   });
 
-  /* ---------- Effetto Hover Mobile (Focus Singolo) ---------- */
-  var visibleCards = new Set();
+  /* ---------- Effetto Hover Mobile & Frecce Singole ---------- */
+  var visibleFocusItems = new Set();
 
-  function updateActiveCard() {
-    // Su desktop, spegniamo le animazioni scroll per far funzionare il mouse
+  function updateActiveFocus() {
+    // Su desktop disattiviamo il tracking scroll per lasciar lavorare l'hover del mouse
     if (window.innerWidth >= 1024) {
-      visibleCards.forEach(function(card) { card.classList.remove('is-active'); });
+      visibleFocusItems.forEach(function(el) { el.classList.remove('is-active'); });
       return;
     }
     
-    var closestCard = null;
+    var closestItem = null;
     var minDistance = Infinity;
-    var centerY = window.innerHeight / 2; // Il centro esatto dello schermo
+    var centerY = window.innerHeight / 2;
 
-    // Troviamo quale riquadro (tra quelli visibili) è matematicamente più vicino al centro
-    visibleCards.forEach(function(card) {
-      var rect = card.getBoundingClientRect();
-      var cardCenterY = rect.top + (rect.height / 2); // Centro del riquadro
-      var distance = Math.abs(centerY - cardCenterY); // Distanza dal centro dello schermo
+    // Troviamo l'elemento matematicamente più vicino al centro
+    visibleFocusItems.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      var elCenterY = rect.top + (rect.height / 2);
+      var distance = Math.abs(centerY - elCenterY);
 
       if (distance < minDistance) {
         minDistance = distance;
-        closestCard = card;
+        closestItem = el;
       }
     });
 
-    // Accendiamo SOLO il riquadro vincitore e spegniamo gli altri
-    visibleCards.forEach(function(card) {
-      card.classList.toggle('is-active', card === closestCard);
+    // Accendiamo l'animazione ESCLUSIVAMENTE sull'elemento vincitore
+    visibleFocusItems.forEach(function(el) {
+      el.classList.toggle('is-active', el === closestItem);
     });
   }
 
-  // L'Observer ora serve solo a dirci quali riquadri sono effettivamente entrati nello schermo
-  var cardObserver = new IntersectionObserver(function(entries) {
+  var focusObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        visibleCards.add(entry.target);
+        visibleFocusItems.add(entry.target);
       } else {
-        visibleCards.delete(entry.target);
-        entry.target.classList.remove('is-active');
+        visibleFocusItems.delete(entry.target);
+        entry.target.classList.remove('is-active'); // Si spegne appena esce dallo schermo
       }
     });
-    updateActiveCard();
+    updateActiveFocus();
   }, { rootMargin: '0px 0px 0px 0px' });
 
-  document.querySelectorAll('.card').forEach(function(card) {
-    cardObserver.observe(card);
+  // Facciamo tracciare al nostro sensore sia le Card che i Link standalone
+  document.querySelectorAll('.card, .js-single-arrow').forEach(function(el) {
+    focusObserver.observe(el);
   });
 
-  // Ricalcoliamo al volo durante lo scorrimento
-  window.addEventListener('scroll', updateActiveCard, { passive: true });
-  window.addEventListener('resize', updateActiveCard, { passive: true });
+  window.addEventListener('scroll', updateActiveFocus, { passive: true });
+  window.addEventListener('resize', updateActiveFocus, { passive: true });
 
   /* ---------- Reveal on scroll ---------- */
   var reveals = document.querySelectorAll('.reveal');
@@ -747,6 +755,5 @@
   }
 })();
 </script>
-
 </body>
 </html>
