@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 @layer base {
-  /* Previene i salti di stile e forza un rendering tipografico uniforme */
   body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
   
-  /* Stabilizza il corsivo istituzionale evitando scompensi di peso al primo render */
+  /* Forza l'uso pulito del corsivo istituzionale bloccando il peso e prevenendo il rendering sintetico */
   em {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
     font-weight: 500;
+    display: inline-block;
   }
 }
 
