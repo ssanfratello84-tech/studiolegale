@@ -540,10 +540,10 @@
   <div class="mx-auto max-w-7xl">
     
     <!-- Griglia Superiore -->
-    <div class="relative grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
       
       <!-- Colonna 1: Logo e Tagline -->
-      <div class="absolute right-0 top-0 flex flex-col items-end lg:static lg:col-span-4 lg:items-start">
+      <div class="lg:col-span-4 flex flex-col items-start">
         <img src="logo-footer.webp" alt="Studio Legale Mazzotta" class="h-14 w-auto lg:mb-6 lg:h-16">
         
         <p class="hidden lg:block max-w-sm text-[15px] leading-relaxed text-slate-300">
@@ -552,7 +552,7 @@
       </div>
 
       <!-- Colonna 2: Sede & Dati -->
-      <div class="pr-16 lg:col-span-4 lg:pr-0">
+      <div class="lg:col-span-4">
         <h3 class="font-serif text-2xl text-white">Sede & Dati</h3>
         <div class="mt-4 mb-8 h-[2px] w-12 bg-[#C1A87D]"></div>
         
@@ -612,11 +612,11 @@
     </div>
 
     <!-- Bottom Bar: Menu, Privacy & Copyright -->
-    <div class="mt-16 border-t border-white/10 pt-8 pb-4 lg:mt-24">
+    <div class="mt-16 border-t border-white/10 pt-10 pb-4 lg:mt-24 lg:pt-8">
       <div class="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
         
         <!-- Menu -->
-        <nav class="flex flex-wrap gap-x-6 gap-y-4 text-[15px] font-medium text-white sm:gap-x-8">
+        <nav class="flex flex-col gap-4 text-[15px] font-medium text-white md:flex-row md:gap-x-8">
           <a href="index.html" class="transition-colors hover:text-[#C1A87D]">Home</a>
           <a href="metodo-forense.html" class="transition-colors hover:text-[#C1A87D]">Metodo Forense</a>
           <a href="aree-di-tutela.html" class="transition-colors hover:text-[#C1A87D]">Aree di Tutela</a>
@@ -627,12 +627,14 @@
       
       <!-- Area Legale -->
       <div class="mt-10 flex flex-col gap-5 text-[13px] tracking-wide text-slate-400 md:mt-8 md:flex-row md:items-center md:justify-between">
-        <p>&copy; 2026 Studio Legale Mazzotta &mdash; Tutti i diritti riservati.</p>
+        <p>
+          &copy; 2026 Studio Legale Mazzotta <span class="hidden md:inline">&mdash;</span> 
+          <span class="block mt-1 md:inline md:mt-0">Tutti i diritti riservati.</span>
+        </p>
         
-        <div class="flex flex-wrap gap-x-6 gap-y-3">
+        <div class="flex gap-6">
           <a href="#" class="transition-colors hover:text-white">Privacy Policy</a>
           <a href="#" class="transition-colors hover:text-white">Cookie Policy</a>
-          <a href="#" class="transition-colors hover:text-white">Termini e Condizioni</a>
         </div>
       </div>
     </div>
