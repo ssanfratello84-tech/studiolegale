@@ -7,7 +7,7 @@ module.exports = {
         navy: { DEFAULT: '#101F44', deep: '#0B1631' }
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', '"Times New Roman"', 'serif'],
+        serif: ['"Cormorant Garamond"', '"Cormorant Garamond Fallback"', 'Georgia', '"Times New Roman"', 'serif'],
         sans: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
       }
     }
