@@ -32,14 +32,14 @@
 <link rel="preload" href="fonts/cormorant-garamond-v21-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/instrument-sans-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/instrument-sans-v4-latin-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="fonts.css?v=2">
 
 <link rel="stylesheet" href="styles.css?v=2">
 
 <style>
   * { -webkit-font-smoothing: antialiased; }
   body { font-family: 'Instrument Sans', sans-serif; }
-  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-serif { font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; }
 
   .eyebrow { display: flex; align-items: center; gap: 0.75rem; }
   .eyebrow::before { content: ''; width: 28px; height: 1px; background: #C1A87D; opacity: 1; display: block; }
@@ -48,7 +48,7 @@
   .nav-link { font-size: 14.5px; color: #384153; transition: color .2s ease; position: relative; }
   .nav-link:hover { color: #101F44; }
 
-  .footer-h { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; font-weight: 500; color: #ffffff; }
+  .footer-h { font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-size: 1.35rem; font-weight: 500; color: #ffffff; }
   .footer-link { color: #C6CEDF; text-decoration: none; transition: color .2s ease; }
   .footer-link:hover { color: #ffffff; }
 
@@ -58,7 +58,7 @@
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.85,.35,1); }
   .reveal.is-visible { opacity: 1; transform: none; }
 
-  .legal-content h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 1.5rem; color: #101F44; margin-top: 3rem; margin-bottom: 1rem; }
+  .legal-content h2 { font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 500; font-size: 1.5rem; color: #101F44; margin-top: 3rem; margin-bottom: 1rem; }
   .legal-content h2:first-child { margin-top: 0; }
   .legal-content p { font-size: 15.5px; line-height: 1.85; color: #384153; margin-top: 1rem; }
   .legal-content ul { margin-top: 1rem; padding-left: 1.25rem; }
@@ -81,8 +81,8 @@
   <img src="logo.webp" alt="" class="h-[30px] w-[36px] shrink-0 object-contain sm:h-[36px] sm:w-[43px]">
   <span class="flex flex-col justify-center translate-y-[1px]">
     <!-- Sostituito text-navy/70 con text-[#C1A87D] per l'effetto dorato -->
-    <span class="text-[13px] uppercase leading-none tracking-[0.22em] text-[#C1A87D] sm:text-[15px] sm:tracking-[0.26em]" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600;">STUDIO LEGALE</span>
-    <span class="-mt-0.5 text-[23px] uppercase leading-[0.95] tracking-[0.05em] text-navy sm:text-[28px] sm:tracking-[0.07em]" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600;">MAZZOTTA</span>
+    <span class="text-[13px] uppercase leading-none tracking-[0.22em] text-[#C1A87D] sm:text-[15px] sm:tracking-[0.26em]" style="font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 600;">STUDIO LEGALE</span>
+    <span class="-mt-0.5 text-[23px] uppercase leading-[0.95] tracking-[0.05em] text-navy sm:text-[28px] sm:tracking-[0.07em]" style="font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 600;">MAZZOTTA</span>
   </span>
 </a>
 
@@ -124,7 +124,7 @@
 
       <div class="reveal mx-auto max-w-3xl">
         <p class="eyebrow"><span class="track-label">Informazioni Legali</span></p>
-        <h1 class="mt-8 text-navy" style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(2.4rem, 4.4vw, 3.2rem); line-height: 1.1;">Privacy Policy</h1>
+        <h1 class="mt-8 text-navy" style="font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 500; font-size: clamp(2.4rem, 4.4vw, 3.2rem); line-height: 1.1;">Privacy Policy</h1>
         
         <div class="legal-content mt-14">
 
