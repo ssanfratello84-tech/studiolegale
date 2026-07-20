@@ -77,28 +77,52 @@
   .nav-link:hover::after, .nav-link[aria-current="page"]::after { transform: scaleX(1); }
   .nav-link[aria-current="page"] { color: #101F44; font-weight: 500; }
 
-  /* ---- Bottoni ---- */
+  /* ---- Bottoni (Stile Premium Unificato) ---- */
   .btn-primary {
     display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
     border-radius: 9999px; background: #101F44; color: #ffffff;
-    font-size: .875rem; font-weight: 500; letter-spacing: .04em;
-    padding: .8rem 1.7rem; cursor: pointer;
-    transition: background .25s ease, box-shadow .3s ease, transform .2s ease;
+    font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    padding: 1.05rem 2.2rem; cursor: pointer;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 14px rgba(16, 31, 68, 0.15);
+    transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .btn-primary:hover { background: #C1A87D; color: #101F44; box-shadow: 0 14px 30px -14px rgba(193,168,125,.55); }
+  .btn-primary:hover {
+    background: #C1A87D; color: #101F44;
+    box-shadow: 0 8px 25px -5px rgba(193, 168, 125, 0.5);
+    transform: translateY(-2px);
+  }
   .btn-primary:active { transform: translateY(1px); }
   .btn-primary:focus-visible { outline: 2px solid #101F44; outline-offset: 3px; }
 
   .btn-white {
     display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
     border-radius: 9999px; background: #ffffff; color: #101F44;
+    font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    padding: 1.05rem 2.2rem; cursor: pointer;
+    border: 1px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-white:hover {
+    background: transparent; color: #ffffff;
+    border-color: #ffffff;
+    transform: translateY(-2px);
+  }
+  .btn-white:active { transform: translateY(1px); }
+  .btn-white:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+
+  /* ---- Bottone Compatto (Solo per Card Sospesa) ---- */
+  .btn-white-compact {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    border-radius: 9999px; background: #ffffff; color: #101F44;
     font-size: .875rem; font-weight: 500; letter-spacing: .04em;
     padding: .85rem 1.9rem; cursor: pointer;
     transition: background .25s ease, box-shadow .3s ease, transform .2s ease;
   }
-  .btn-white:hover { background: #C1A87D; color: #101F44; box-shadow: 0 16px 34px -16px rgba(0,0,0,.5); }
-  .btn-white:active { transform: translateY(1px); }
-  .btn-white:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+  .btn-white-compact:hover { background: #C1A87D; color: #101F44; box-shadow: 0 16px 34px -16px rgba(0,0,0,.5); }
+  .btn-white-compact:active { transform: translateY(1px); }
+  .btn-white-compact:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
 
   .link-arrow {
     display: inline-flex; align-items: center; gap: .6rem;
@@ -401,7 +425,7 @@
       </h2>
     </div>
     <!-- Bottone allineato a destra su mobile (self-end) e abbassato su desktop (lg:mt-6) -->
-    <a href="contatti.html#contactForm" class="btn-white shrink-0 self-end lg:mt-6 px-6 sm:px-[1.9rem]">
+    <a href="contatti.html#contactForm" class="btn-white-compact shrink-0 self-end lg:mt-6 px-6 sm:px-[1.9rem]">
       <span class="sm:hidden">Richiedi un colloquio</span>
       <span class="hidden sm:inline">Richiedi un colloquio riservato</span>
     </a>
