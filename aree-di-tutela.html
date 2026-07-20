@@ -200,9 +200,11 @@
 
     <!-- CALL TO ACTION MOBILE (Urgente) + BOTTONE MENU -->
     <div class="flex items-center gap-2 lg:hidden">
-      <a href="tel:+393283313179" class="flex h-9 items-center gap-1.5 rounded-full border border-[#C1A87D] bg-[#C1A87D]/10 px-3.5 text-[12px] font-semibold tracking-wide text-navy transition hover:bg-[#C1A87D]/20" aria-label="Chiama lo studio per urgenze">
-        <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-navy" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
-        CHIAMA
+      <!-- Pulsante Chiamata Mobile Compatto -->
+      <a href="tel:+393283313179" class="inline-flex items-center justify-center p-2.5 bg-[#0B1A30] text-white rounded-full border border-[#C5A880]/40 shadow-md" aria-label="Chiama lo studio per urgenze">
+        <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
       </a>
       <button id="menuBtn" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-navy transition hover:bg-gray-50" aria-expanded="false" aria-controls="mobileMenu" aria-label="Apri il menu di navigazione">
         <svg id="iconOpen" viewBox="0 0 22 14" class="h-3.5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 1h20M1 7h20M1 13h13"/></svg>
@@ -398,8 +400,8 @@
         Ogni incarico inizia con un esame riservato della posizione
       </h2>
     </div>
-    <!-- Bottone allineato a sinistra, copy adattivo per mantenere la forma a pillola su smartphone -->
-    <a href="contatti.html#contactForm" class="btn-white shrink-0 self-start px-6 sm:px-[1.9rem]">
+    <!-- Bottone centrato su mobile (self-center) e abbassato su desktop (lg:mt-6) -->
+    <a href="contatti.html#contactForm" class="btn-white shrink-0 self-center lg:mt-6 px-6 sm:px-[1.9rem]">
       <span class="sm:hidden">Richiedi un colloquio</span>
       <span class="hidden sm:inline">Richiedi un colloquio riservato</span>
     </a>
