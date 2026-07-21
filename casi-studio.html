@@ -113,6 +113,15 @@
   .btn-white-compact:active { transform: translateY(1px); }
   .btn-white-compact:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
 
+  .link-arrow {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: .78rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
+    color: rgba(16,31,68,.62); transition: color .25s ease;
+  }
+  .link-arrow svg { transition: transform .3s ease; }
+  .link-arrow:hover { color: #101F44; }
+  .link-arrow:hover svg { color: #C1A87D; transform: translateX(5px); }
+
   /* ---- Footer ---- */
   .footer-h { font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-size: 1.35rem; font-weight: 500; color: #ffffff; }
   .footer-link { color: #C6CEDF; transition: color .25s ease; }
