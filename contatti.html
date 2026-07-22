@@ -256,8 +256,8 @@
         <h1 class="mt-8 text-navy" style="font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 500; font-size: clamp(2.7rem, 5.4vw, 4.4rem); line-height: 0.98; letter-spacing: 0.02em;">
           CONTATTI
         </h1>
-        <p class="mt-8 max-w-xl text-lg leading-relaxed text-slate-600">
-          Per la gestione di pratiche in corso, comunicazioni istituzionali e rapporti con l'autorità giudiziaria.
+        <p class="mt-8 max-w-xl text-[1.05rem] lg:text-lg leading-relaxed text-slate-600">
+          Per sottoporre un caso allo Studio, richiedere un parere preliminare o gestire comunicazioni istituzionali. Ogni incarico è valutato con assoluta riservatezza.
         </p>
 
         <form action="https://submit-form.com/ZFnyofYMg" method="POST" id="contactForm" class="mt-12 scroll-mt-28 space-y-6">
@@ -267,9 +267,10 @@
                  hover:none + pointer:coarse intercetta il dispositivo il cui input primario
                  è un dito (telefono, tablet senza mouse), non una soglia di larghezza:
                  un laptop con touchscreen ma mouse collegato resta sul <select> nativo. */
-              .chip-group { display: flex; flex-wrap: wrap; gap: .65rem; }
-              .chip-ui.chip-group { flex-direction: column; flex-wrap: nowrap; align-items: stretch; }
-              .chip-ui.chip-group .chip { width: 100%; justify-content: flex-start; text-align: left; }
+              .chip-group { display: flex; flex-wrap: wrap; gap: .5rem; }
+              /* UX Mobile: Trasformiamo l'incolonnamento forzato in pillole affiancate per salvare spazio verticale */
+              .chip-ui.chip-group { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; }
+              .chip-ui.chip-group .chip { width: auto; justify-content: center; text-align: center; padding: .55rem 1.1rem; font-size: .8125rem; }
               .chip {
                 display: inline-flex; align-items: center; justify-content: center;
                 min-height: 44px; padding: .6rem 1.35rem; border-radius: 9999px;
@@ -510,6 +511,15 @@
                 <span class="field-label" style="margin-bottom: 0;">Posta Certificata (PEC)</span>
               </div>
               <span class="block font-sans text-[15px] font-medium text-navy break-words">daniela.mazzotta@monza.pecavvocati.it</span>
+            </a>
+
+            <!-- WHATSAPP (SEGRETERIA) -->
+            <a href="https://wa.me/393283313179" target="_blank" rel="noopener" class="flex flex-col justify-center min-h-[76px] gap-1.5 rounded-xl border border-[#25D366]/30 bg-[#25D366]/5 px-5 py-4 transition-colors hover:border-[#25D366]/60 hover:bg-[#25D366]/10">
+              <div class="flex items-center gap-2.5">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="#25D366" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>
+                <span class="field-label" style="margin-bottom: 0; color: #101F44;">Segreteria WhatsApp</span>
+              </div>
+              <span class="block font-sans text-[13px] font-medium text-slate-600">Per appuntamenti e info brevi. Non si forniscono pareri in chat.</span>
             </a>
             
           </div>      
