@@ -188,22 +188,25 @@
     .reveal { opacity: 1; transform: none; transition: none; }
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
-  /* ---- Animazione Freccia Identica alla Home ---- */
+  /* ---- Animazione Freccia (Micro-interazione focus singolo) ---- */
   @keyframes pulse-arrow-subtle {
     0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(3px); }
+    50% { transform: translateX(3px); } /* Movimento ridotto da 5px a 3px per massima eleganza */
   }
+  
+  /* Attivazione esclusiva pilotata dal JS su mobile */
   .card.is-active .card-cta svg,
   .link-arrow.is-active svg {
     animation: pulse-arrow-subtle 1.5s ease-in-out infinite;
     color: #C1A87D;
   }
+  
+  /* Mantiene il comportamento standard su Desktop (hover) */
   @media (hover: hover) {
     .card:hover .card-cta svg,
     .link-arrow:hover svg {
       animation: pulse-arrow-subtle 1.5s ease-in-out infinite;
       color: #C1A87D;
-      transform: none; /* Disattiva la vecchia transizione lineare */
     }
   }
 </style>
