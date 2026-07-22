@@ -171,6 +171,24 @@
     .reveal { opacity: 1; transform: none; transition: none; }
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
+  /* ---- Animazione Freccia Identica alla Home ---- */
+  @keyframes pulse-arrow-subtle {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+  }
+  .card.is-active .card-cta svg,
+  .link-arrow.is-active svg {
+    animation: pulse-arrow-subtle 1.5s ease-in-out infinite;
+    color: #C1A87D;
+  }
+  @media (hover: hover) {
+    .card:hover .card-cta svg,
+    .link-arrow:hover svg {
+      animation: pulse-arrow-subtle 1.5s ease-in-out infinite;
+      color: #C1A87D;
+      transform: none; /* Disattiva la vecchia transizione lineare */
+    }
+  }
 </style>
 <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
