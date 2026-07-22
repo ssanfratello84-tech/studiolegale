@@ -192,6 +192,16 @@
       color: #C1A87D;
     }
   }
+  /* ---- Animazione Freccia Mobile (Senza intaccare il desktop) ---- */
+  @keyframes pulse-arrow-subtle {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+  }
+  .card.is-active .card-cta svg,
+  .link-arrow.is-active svg {
+    animation: pulse-arrow-subtle 1.5s ease-in-out infinite;
+    color: #C1A87D;
+  }
 </style>
 <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
@@ -634,6 +644,46 @@
   mobileMenu.querySelectorAll('a, button').forEach(function (el) {
     el.addEventListener('click', function () { setMenu(false); });
   });
+
+  /* ---------- Effetto Hover Mobile & Frecce Singole ---------- */
+  var visibleFocusItems = new Set();
+  function updateActiveFocus() {
+    if (window.innerWidth >= 1024) {
+      visibleFocusItems.forEach(function(el) { el.classList.remove('is-active'); });
+      return;
+    }
+    var closestItem = null;
+    var minDistance = Infinity;
+    var centerY = window.innerHeight / 2;
+    visibleFocusItems.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      var elCenterY = rect.top + (rect.height / 2);
+      var distance = Math.abs(centerY - elCenterY);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestItem = el;
+      }
+    });
+    visibleFocusItems.forEach(function(el) {
+      el.classList.toggle('is-active', el === closestItem);
+    });
+  }
+  var focusObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        visibleFocusItems.add(entry.target);
+      } else {
+        visibleFocusItems.delete(entry.target);
+        entry.target.classList.remove('is-active');
+      }
+    });
+    updateActiveFocus();
+  }, { rootMargin: '0px 0px 0px 0px' });
+  document.querySelectorAll('.card, .js-single-arrow').forEach(function(el) {
+    focusObserver.observe(el);
+  });
+  window.addEventListener('scroll', updateActiveFocus, { passive: true });
+  window.addEventListener('resize', updateActiveFocus, { passive: true });
 
   /* ---------- Reveal on scroll ---------- */
   var reveals = document.querySelectorAll('.reveal');
