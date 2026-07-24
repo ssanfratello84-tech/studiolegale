@@ -16,8 +16,8 @@ Sito web ufficiale dello **Studio Legale Mazzotta** — boutique legale con sede
 
 ```
 ├── index.html                  # Home
-├── modello-operativo.html      # La Struttura / Modello Operativo
-├── funzioni-strategiche.html   # Funzioni Strategiche
+├── metodo-forense.html         # La Struttura / Modello Operativo
+├── Aree-di-tutela.html         # Funzioni Strategiche
 ├── casi-studio.html            # Casi Studio
 ├── contatti.html               # Contatti e form riservato
 ├── privacy-policy.html
