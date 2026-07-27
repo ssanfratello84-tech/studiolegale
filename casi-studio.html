@@ -482,6 +482,10 @@
           </span>
         </div>
         
+        <p class="max-w-sm text-[15px] leading-relaxed text-slate-300">
+          Un coordinamento unitario per la tutela dell'impresa e del patrimonio.
+        </p>
+      </div>
 
       <!-- Colonna 2: Sede & Dati -->
       <div class="lg:col-span-4" style="padding-left: 80px;">
@@ -581,11 +585,18 @@
 (function () {
   'use strict';
 
-  /* ---------- Header: ombra allo scroll ---------- */
+  /* ---------- Header: Ombra allo scroll ---------- */
   var header = document.getElementById('siteHeader');
-  function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
-  onScroll();
+
+  function onScroll() {
+    var currentScroll = window.scrollY || document.documentElement.scrollTop;
+    header.classList.toggle('is-scrolled', currentScroll > 8);
+  }
+  
+  // Aggiunto 'resize' per resettare l'header se ruoti il telefono
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
 
   /* ---------- Menu mobile ---------- */
   var menuBtn = document.getElementById('menuBtn');
@@ -608,41 +619,53 @@
 
   /* ---------- Effetto Hover Mobile & Frecce Singole ---------- */
   var visibleFocusItems = new Set();
+
   function updateActiveFocus() {
+    // Su desktop disattiviamo il tracking scroll per lasciar lavorare l'hover del mouse
     if (window.innerWidth >= 1024) {
       visibleFocusItems.forEach(function(el) { el.classList.remove('is-active'); });
       return;
     }
+    
     var closestItem = null;
     var minDistance = Infinity;
     var centerY = window.innerHeight / 2;
+
+    // Troviamo l'elemento matematicamente più vicino al centro
     visibleFocusItems.forEach(function(el) {
       var rect = el.getBoundingClientRect();
       var elCenterY = rect.top + (rect.height / 2);
       var distance = Math.abs(centerY - elCenterY);
+
       if (distance < minDistance) {
         minDistance = distance;
         closestItem = el;
       }
     });
+
+    // Accendiamo l'animazione ESCLUSIVAMENTE sull'elemento vincitore
     visibleFocusItems.forEach(function(el) {
       el.classList.toggle('is-active', el === closestItem);
     });
   }
+
   var focusObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         visibleFocusItems.add(entry.target);
       } else {
         visibleFocusItems.delete(entry.target);
-        entry.target.classList.remove('is-active');
+        entry.target.classList.remove('is-active'); // Si spegne appena esce dallo schermo
       }
     });
     updateActiveFocus();
   }, { rootMargin: '0px 0px 0px 0px' });
+
+  // Facciamo tracciare al nostro sensore sia le Card che i Link standalone
   document.querySelectorAll('.card, .js-single-arrow').forEach(function(el) {
     focusObserver.observe(el);
   });
+
   window.addEventListener('scroll', updateActiveFocus, { passive: true });
   window.addEventListener('resize', updateActiveFocus, { passive: true });
 
@@ -675,6 +698,5 @@
   }
 })();
 </script>
-
 </body>
 </html>

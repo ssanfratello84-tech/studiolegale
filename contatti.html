@@ -603,6 +603,10 @@
           </span>
         </div>
         
+        <p class="max-w-sm text-[15px] leading-relaxed text-slate-300">
+          Un coordinamento unitario per la tutela dell'impresa e del patrimonio.
+        </p>
+      </div>
 
       <!-- Colonna 2: Sede & Dati -->
       <div class="lg:col-span-4" style="padding-left: 80px;">
@@ -698,319 +702,122 @@
   </div>
 </footer>
 
-<!-- Botpoison — protezione anti-spam invisibile in self-hosting -->
-<script src="botpoison-browser.js" async></script>
-
 <script>
-  (function () {
-    'use strict';
+(function () {
+  'use strict';
 
-    // Facade Google Maps: la mappa si carica solo su azione esplicita dell'utente
-    const mapFacade = document.getElementById('mapFacade');
-    const mapLoadBtn = document.getElementById('mapLoadBtn');
-    const mapFrame = document.getElementById('mapFrame');
-   if (mapFacade && mapLoadBtn && mapFrame) {
-      mapLoadBtn.addEventListener('click', function () {
-        mapFrame.src = mapFrame.dataset.src;
-        mapFacade.classList.add('opacity-0', 'pointer-events-none');
-        window.setTimeout(function () { mapFacade.remove(); }, 300);
-      });
+  /* ---------- Header: Ombra allo scroll ---------- */
+  var header = document.getElementById('siteHeader');
+
+  function onScroll() {
+    var currentScroll = window.scrollY || document.documentElement.scrollTop;
+    header.classList.toggle('is-scrolled', currentScroll > 8);
+  }
+  
+  // Aggiunto 'resize' per resettare l'header se ruoti il telefono
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Menu mobile ---------- */
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var iconOpen = document.getElementById('iconOpen');
+  var iconClose = document.getElementById('iconClose');
+
+  function setMenu(open) {
+    mobileMenu.classList.toggle('hidden', !open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  menuBtn.addEventListener('click', function () {
+    setMenu(mobileMenu.classList.contains('hidden'));
+  });
+  mobileMenu.querySelectorAll('a, button').forEach(function (el) {
+    el.addEventListener('click', function () { setMenu(false); });
+  });
+
+  /* ---------- Effetto Hover Mobile & Frecce Singole ---------- */
+  var visibleFocusItems = new Set();
+
+  function updateActiveFocus() {
+    // Su desktop disattiviamo il tracking scroll per lasciar lavorare l'hover del mouse
+    if (window.innerWidth >= 1024) {
+      visibleFocusItems.forEach(function(el) { el.classList.remove('is-active'); });
+      return;
     }
+    
+    var closestItem = null;
+    var minDistance = Infinity;
+    var centerY = window.innerHeight / 2;
 
-    /* ---------- Header & Menu Mobile ---------- */
-    const header = document.getElementById('siteHeader');
-    function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    // Troviamo l'elemento matematicamente più vicino al centro
+    visibleFocusItems.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      var elCenterY = rect.top + (rect.height / 2);
+      var distance = Math.abs(centerY - elCenterY);
 
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const iconOpen = document.getElementById('iconOpen');
-    const iconClose = document.getElementById('iconClose');
-
-    function setMenu(open) {
-      mobileMenu.classList.toggle('hidden', !open);
-      iconOpen.classList.toggle('hidden', open);
-      iconClose.classList.toggle('hidden', !open);
-      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-    menuBtn.addEventListener('click', () => setMenu(mobileMenu.classList.contains('hidden')));
-    mobileMenu.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('click', () => setMenu(false));
-    });
-
-    /* ---------- Form Logic Dinamica (select desktop + chips touch, un solo hidden input) ---------- */
-    const soggettoInput = document.getElementById('soggetto');
-    const soggettoSelectEl = document.getElementById('soggetto_select');
-    const soggettoChips = document.querySelectorAll('[data-soggetto]');
-    const soggettoLabels = {
-      'azienda': 'Impresa / Corporate',
-      'privato': 'Privato / Gestione Patrimonio',
-      'assicurazione': 'Compagnia Assicurativa / Intermediario',
-      'ente': 'Ente / Istituzione',
-      'professionista': 'Professionista / Studio Tecnico',
-      'altro': 'Altro / Richiesta di Consulenza Generale'
-    };
-    const subGroups = {
-      'azienda': document.getElementById('gruppo_azienda'),
-      'privato': document.getElementById('gruppo_privato'),
-      'professionista': document.getElementById('gruppo_professionista'),
-      'assicurazione': document.getElementById('gruppo_assicurazione'),
-      'ente': document.getElementById('gruppo_ente')
-    };
-
-    const subSelectEls = {
-      'azienda': document.getElementById('area_azienda_select'),
-      'privato': document.getElementById('area_privato_select'),
-      'professionista': document.getElementById('area_professionista_select'),
-      'assicurazione': document.getElementById('area_assicurazione_select'),
-      'ente': document.getElementById('area_ente_select')
-    };
-
-    const subInputs = {
-      'azienda': document.getElementById('area_azienda'),
-      'privato': document.getElementById('area_privato'),
-      'professionista': document.getElementById('area_professionista'),
-      'assicurazione': document.getElementById('area_assicurazione'),
-      'ente': document.getElementById('area_ente')
-    };
-
-    // Etichetta leggibile per ogni area (usata nell'oggetto email), presa dalle chip:
-    // i value delle chip e delle <option> corrispondenti sono identici per costruzione.
-    const areaLabels = {};
-    Object.keys(subInputs).forEach(key => {
-      areaLabels[key] = {};
-      subGroups[key].querySelectorAll('[data-area]').forEach(btn => {
-        areaLabels[key][btn.dataset.area] = btn.textContent.trim();
-      });
-    });
-
-    const messaggioField = document.getElementById('messaggio');
-    const messaggioLabel = document.getElementById('messaggio_label');
-
-    // Funzione per validare lo stato del Messaggio
-    function checkMessaggioRequirement() {
-      let requiresMessage = false;
-      const currentSoggetto = soggettoInput.value;
-
-      // Selezionato "Altro" nel selettore primario
-      if (currentSoggetto === 'altro') {
-        requiresMessage = true;
-      } 
-      // Selezionato "Altro" all'interno di un sottomenu attivo
-      else if (subInputs[currentSoggetto] && subInputs[currentSoggetto].value === 'altro') {
-        requiresMessage = true;
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestItem = el;
       }
+    });
 
-      // Aggiorna field e label
-      messaggioField.required = requiresMessage;
-      if (requiresMessage) {
-        messaggioLabel.innerHTML = 'Messaggio *';
-        messaggioLabel.style.color = '#101F44';
+    // Accendiamo l'animazione ESCLUSIVAMENTE sull'elemento vincitore
+    visibleFocusItems.forEach(function(el) {
+      el.classList.toggle('is-active', el === closestItem);
+    });
+  }
+
+  var focusObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        visibleFocusItems.add(entry.target);
       } else {
-        messaggioLabel.innerHTML = 'Messaggio';
-        messaggioLabel.style.color = '#6B7690';
+        visibleFocusItems.delete(entry.target);
+        entry.target.classList.remove('is-active'); // Si spegne appena esce dallo schermo
       }
-    }
+    });
+    updateActiveFocus();
+  }, { rootMargin: '0px 0px 0px 0px' });
 
-    // Categorie che rappresentano un'organizzazione, non una persona fisica
-    const categorieConRagioneSociale = ['azienda', 'professionista', 'assicurazione', 'ente'];
-    const gruppoRagioneSociale = document.getElementById('gruppo_ragione_sociale');
-    const ragioneSocialeField = document.getElementById('ragione_sociale');
+  // Facciamo tracciare al nostro sensore sia le Card che i Link standalone
+  document.querySelectorAll('.card, .js-single-arrow').forEach(function(el) {
+    focusObserver.observe(el);
+  });
 
-    // Selezione del Tipo di Richiedente: chiamata sia dal <select> (desktop) sia dalle chip (touch),
-    // così le due UI restano sempre allineate anche se il dispositivo cambia modalità a metà (es. tablet ruotato).
-    function selectSoggetto(value) {
-      soggettoInput.value = value;
-      soggettoSelectEl.value = value;
+  window.addEventListener('scroll', updateActiveFocus, { passive: true });
+  window.addEventListener('resize', updateActiveFocus, { passive: true });
 
-      soggettoChips.forEach(chip => {
-        const active = chip.dataset.soggetto === value;
-        chip.classList.toggle('is-active', active);
-        chip.setAttribute('aria-checked', active ? 'true' : 'false');
+  /* ---------- Reveal on scroll ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
       });
-
-      // 1. Nascondi e resetta tutti i sottomenu
-      for (const key in subGroups) {
-        subGroups[key].classList.add('hidden');
-        subGroups[key].classList.remove('block');
-        subSelectEls[key].required = false;
-        subSelectEls[key].value = '';
-        subInputs[key].value = '';
-        subGroups[key].querySelectorAll('[data-area]').forEach(btn => {
-          btn.classList.remove('is-active');
-          btn.setAttribute('aria-checked', 'false');
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    reveals.forEach(function (el) {
+      /* Elementi già in viewport al load: visibili subito, senza animazione */
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
+        el.style.transition = 'none';
+        el.classList.add('is-visible');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { el.style.transition = ''; });
         });
-      }
-
-      // 2. Mostra e rendi obbligatorio il sottomenu corrispondente
-      if (subGroups[value]) {
-        subGroups[value].classList.remove('hidden');
-        subGroups[value].classList.add('block');
-        subSelectEls[value].required = true;
-      }
-
-      // 2b. Mostra/nascondi Ragione Sociale in base alla categoria
-      if (categorieConRagioneSociale.includes(value)) {
-        gruppoRagioneSociale.classList.remove('hidden');
-        ragioneSocialeField.required = true;
       } else {
-        gruppoRagioneSociale.classList.add('hidden');
-        ragioneSocialeField.required = false;
-        ragioneSocialeField.value = '';
+        io.observe(el);
       }
-
-      // 3. Valida il campo messaggio
-      checkMessaggioRequirement();
-    }
-
-    soggettoSelectEl.addEventListener('change', () => selectSoggetto(soggettoSelectEl.value));
-    soggettoChips.forEach(chip => {
-      chip.addEventListener('click', () => selectSoggetto(chip.dataset.soggetto));
     });
-
-    // Selezione dell'Area di Interesse: idem, chiamata da <select> o da chip.
-    function selectArea(key, value) {
-      subInputs[key].value = value;
-      subSelectEls[key].value = value;
-      subGroups[key].querySelectorAll('[data-area]').forEach(btn => {
-        const active = btn.dataset.area === value;
-        btn.classList.toggle('is-active', active);
-        btn.setAttribute('aria-checked', active ? 'true' : 'false');
-      });
-      checkMessaggioRequirement();
-    }
-
-    Object.keys(subInputs).forEach(key => {
-      subSelectEls[key].addEventListener('change', () => selectArea(key, subSelectEls[key].value));
-      subGroups[key].querySelectorAll('[data-area]').forEach(btn => {
-        btn.addEventListener('click', () => selectArea(key, btn.dataset.area));
-      });
-    });
-
-    /* ---------- Invio richiesta a Formspark ---------- */
-    const contactForm = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const formError = document.getElementById('formError');
-    const formErrorDefaultHTML = formError.innerHTML;
-    const formSuccess = document.getElementById('formSuccess');
-
-    if (contactForm) {
-      contactForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        formError.classList.add('hidden');
-
-        const currentSoggetto = soggettoInput.value;
-
-        // Rete di sicurezza per il percorso touch/chip: su desktop il <select required>
-        // blocca già nativamente il submit prima che questo codice venga eseguito.
-        if (!currentSoggetto) {
-          formError.innerHTML = 'Seleziona il tipo di richiedente per continuare.';
-          formError.classList.remove('hidden');
-          submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          return;
-        }
-        if (subInputs[currentSoggetto] && !subInputs[currentSoggetto].value) {
-          formError.innerHTML = 'Seleziona un\'area di interesse per continuare.';
-          formError.classList.remove('hidden');
-          subGroups[currentSoggetto].scrollIntoView({ behavior: 'smooth', block: 'center' });
-          return;
-        }
-        formError.innerHTML = formErrorDefaultHTML;
-
-        const categoria = soggettoLabels[currentSoggetto] || '';
-
-        // Recupera l'etichetta leggibile dell'area selezionata, se presente
-        let area = '';
-        if (subInputs[currentSoggetto]) {
-          const areaValue = subInputs[currentSoggetto].value;
-          area = (areaValue && areaLabels[currentSoggetto][areaValue]) ? areaLabels[currentSoggetto][areaValue] : '';
-        }
-
-        const nome = document.getElementById('nome').value.trim();
-        const cognome = document.getElementById('cognome').value.trim();
-        const nomeCompleto = (nome + ' ' + cognome).trim();
-
-        // Oggetto: [Sito] CATEGORIA - Area | Nome Cognome
-        const subjectParts = ['[Sito]', categoria];
-        if (area) subjectParts.push('- ' + area);
-        const subject = subjectParts.join(' ') + ' | ' + nomeCompleto;
-
-        // Popola i campi nascosti prima dell'invio
-        document.getElementById('hiddenCategoria').value = categoria;
-        document.getElementById('hiddenArea').value = area || '—';
-        document.getElementById('hiddenNomeCompleto').value = nomeCompleto;
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Invio in corso...';
-
-        // Sfida Botpoison — verifica invisibile che chi invia sia una persona reale
-        const formData = new FormData(contactForm);
-        if (typeof Botpoison !== 'undefined') {
-          try {
-            const botpoison = new Botpoison({ publicKey: 'pk_22d53077-b5fe-4981-9d58-75d7d2bc30b1' });
-            const { solution } = await botpoison.challenge();
-            formData.append('_botpoison', solution);
-          } catch (err) {
-            // Se Botpoison non risponde, l'invio prosegue comunque:
-            // meglio rischiare uno spam in più che perdere una richiesta vera.
-          }
-        }
-
-        // Costruisco il payload a mano: l'oggetto email va annidato come
-        // { subject: ... } dentro una chiave "_email", non come chiave piatta
-        // "_email.subject" — col JSON puro il punto non viene letto come annidamento.
-        const payload = Object.fromEntries(formData);
-        payload['_email'] = { subject: subject };
-
-        fetch(contactForm.action, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        })
-          .then(function (response) {
-            if (!response.ok) throw new Error('Invio non riuscito');
-            contactForm.classList.add('hidden');
-            formSuccess.classList.remove('hidden');
-          })
-          .catch(function () {
-            formError.classList.remove('hidden');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Invia Richiesta Riservata';
-          });
-      });
-    }
-
-    /* ---------- Reveal on scroll ---------- */
-    const reveals = document.querySelectorAll('.reveal');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if ('IntersectionObserver' in window && !reduceMotion) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-      reveals.forEach(el => {
-        /* Elementi già in viewport al load: visibili subito, senza animazione */
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
-          el.style.transition = 'none';
-          el.classList.add('is-visible');
-          requestAnimationFrame(() => requestAnimationFrame(() => { el.style.transition = ''; }));
-        } else {
-          io.observe(el);
-        }
-      });
-    } else {
-      reveals.forEach(el => el.classList.add('is-visible'));
-    }
-  })();
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
 </script>
-
 </body>
 </html>

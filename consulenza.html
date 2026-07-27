@@ -340,6 +340,10 @@
           </span>
         </div>
         
+        <p class="max-w-sm text-[15px] leading-relaxed text-slate-300">
+          Un coordinamento unitario per la tutela dell'impresa e del patrimonio.
+        </p>
+      </div>
 
       <!-- Colonna 2: Sede & Dati -->
       <div class="lg:col-span-4" style="padding-left: 80px;">
@@ -552,49 +556,5 @@
   }
 })();
 </script>
-<script>
-    (function () {
-      'use strict';
-
-      /* Logica Checkbox e Calendario */
-      var acceptTerms = document.getElementById('acceptTerms');
-      var loadBtn = document.getElementById('loadCalendarBtn');
-      var actionArea = document.getElementById('actionArea');
-      var calContainer = document.getElementById('calendarContainer');
-      var calIframe = document.getElementById('calIframe');
-
-      if(acceptTerms && loadBtn) {
-        // Ascolta la casella di spunta
-        acceptTerms.addEventListener('change', function() {
-          if (this.checked) {
-            // Abilita pulsante e dagli i colori istituzionali
-            loadBtn.disabled = false;
-            loadBtn.className = "inline-flex items-center justify-center rounded-full border border-[#C1A87D] bg-[#C1A87D] px-8 py-4 text-[15px] font-medium text-navy transition-all hover:border-navy hover:bg-navy hover:text-white cursor-pointer w-full sm:w-auto";
-            loadBtn.innerText = "Accedi alle Agende";
-          } else {
-            // Disabilita pulsante
-            loadBtn.disabled = true;
-            loadBtn.className = "inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-100 px-8 py-4 text-[15px] font-medium text-slate-400 transition-all cursor-not-allowed w-full sm:w-auto";
-            loadBtn.innerText = "Spunta la casella per procedere";
-          }
-        });
-
-        // Al clic sul pulsante
-        loadBtn.addEventListener('click', function() {
-          if (!acceptTerms.checked) return;
-          calIframe.src = calIframe.getAttribute('data-src');
-          actionArea.style.display = 'none'; // nascondi il pulsante
-          
-          calContainer.classList.remove('hidden');
-          calContainer.style.opacity = 0;
-          setTimeout(function() {
-            calContainer.style.transition = 'opacity 0.5s ease';
-            calContainer.style.opacity = 1;
-            calContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 50);
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
