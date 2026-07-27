@@ -321,23 +321,28 @@
   <!-- ============================================================
      FOOTER ISTITUZIONALE (Redesign Gold Champagne)
 ============================================================= -->
-<footer class="bg-[#080d1e] px-6 py-16 text-white lg:py-24">
-  <div class="mx-auto max-w-7xl">
+<footer class="bg-[#080d1e] py-16 text-white lg:py-24">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
     
     <!-- Griglia Superiore -->
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
       
-      <!-- Colonna 1: Logo e Tagline (Nascosta su mobile) -->
+      <!-- Colonna 1: Simbolo grafico e Testo introduttivo (Nascosta su mobile) -->
       <div class="hidden lg:col-span-4 lg:flex lg:flex-col lg:items-start">
-        <img src="logo-footer.webp" alt="Studio Legale Mazzotta" class="mb-6 h-16 w-auto">
         
-        <p class="max-w-sm text-[15px] leading-relaxed text-slate-300">
-          Un coordinamento unitario per la tutela dell'impresa e del patrimonio.
-        </p>
-      </div>
+        <!-- Contenitore per affiancare simbolo grafico e testo -->
+        <div class="mb-6 flex items-center gap-2">
+          <img src="logo-footer.webp" alt="Studio Legale Mazzotta" class="w-auto shrink-0 object-contain" style="height: 42px;">
+          
+          <span class="flex flex-col justify-center" style="margin-top: 3px;">
+            <span class="uppercase leading-none tracking-[0.26em] text-[#C1A87D]" style="font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 600; font-size: 14px;">STUDIO LEGALE</span>            
+            <span class="uppercase leading-[0.95] tracking-[0.08em] text-white" style="font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 600; font-size: 25px; margin-top: -3px;">MAZZOTTA</span>
+          </span>
+        </div>
+        
 
       <!-- Colonna 2: Sede & Dati -->
-      <div class="lg:col-span-4">
+      <div class="lg:col-span-4" style="padding-left: 80px;">
         <!-- Titoli e linee visibili SOLO su Desktop -->
         <h3 class="hidden lg:block font-serif text-2xl text-white">Sede & Dati</h3>
         <div class="hidden lg:block mt-4 mb-8 h-[2px] w-12 bg-[#C1A87D]"></div>
@@ -357,7 +362,7 @@
       </div>
 
       <!-- Colonna 3: Contatti Diretti -->
-      <div class="lg:col-span-4">
+      <div class="lg:col-span-4" style="padding-left: 45px;">
         <!-- Titoli e linee visibili SOLO su Desktop -->
         <h3 class="hidden lg:block font-serif text-2xl text-white">Contatti Diretti</h3>
         <div class="hidden lg:block mt-4 mb-8 h-[2px] w-12 bg-[#C1A87D]"></div>
