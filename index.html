@@ -314,7 +314,31 @@
       <a href="metodo-forense.html" class="nav-link">Metodo Forense</a>
       <a href="aree-di-tutela.html" class="nav-link">Aree di Tutela</a>
       <a href="casi-studio.html" class="nav-link">Casi Studio</a>
-      <a href="contatti.html" class="ml-2 rounded-full border border-[#C1A87D] bg-[#C1A87D] px-6 py-2.5 text-sm font-medium text-navy transition-all hover:border-navy hover:bg-navy hover:text-white">Contatti</a>
+      <!-- INIZIO TENDINA CONTATTI DESKTOP -->
+      <div class="relative group ml-2">
+        <button type="button" class="inline-flex items-center gap-2 rounded-full border border-[#C1A87D] bg-[#C1A87D] px-6 py-2.5 text-sm font-medium text-navy transition-all group-hover:border-navy group-hover:bg-navy group-hover:text-white" aria-expanded="false">
+          Contatti
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:-rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        
+        <!-- Pannello Dropdown -->
+        <div class="absolute right-0 mt-2 w-64 origin-top-right rounded-2xl border border-navy/5 bg-white p-2.5 shadow-[0_20px_40px_-15px_rgba(16,31,68,0.15)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50">
+          
+          <a href="consulenza.html" class="block rounded-xl p-4 hover:bg-gray-50 transition-colors border border-transparent hover:border-navy/5">
+            <span class="block text-[15px] font-serif font-medium text-navy">Prenota Consulenza</span>
+            <span class="mt-1 block text-[13px] text-slate-500 leading-snug">Fissa un colloquio riservato per inquadrare la vertenza.</span>
+          </a>
+          
+          <div class="my-1 border-t border-navy/5"></div>
+          
+          <a href="contatti.html" class="block rounded-xl p-4 hover:bg-gray-50 transition-colors border border-transparent hover:border-navy/5">
+            <span class="block text-[15px] font-serif font-medium text-navy">Informazioni e Sede</span>
+            <span class="mt-1 block text-[13px] text-slate-500 leading-snug">Recapiti diretti e indicazioni per raggiungere lo Studio.</span>
+          </a>
+          
+        </div>
+      </div>
+      <!-- FINE TENDINA CONTATTI DESKTOP -->
     </div>
 
     <!-- CALL TO ACTION MOBILE (Urgente) + BOTTONE MENU -->
@@ -338,7 +362,19 @@
     <a href="metodo-forense.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Metodo Forense</a>
     <a href="aree-di-tutela.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Aree di Tutela</a>
     <a href="casi-studio.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Casi Studio</a>
-    <a href="contatti.html" class="mt-5 block w-full rounded-full border border-[#C1A87D] bg-[#C1A87D] py-3.5 text-center text-[15px] font-medium text-navy transition-all hover:border-navy hover:bg-navy hover:text-white">Contatti</a>
+    <!-- INIZIO BLOCCO CONTATTI INTEGRATO MOBILE -->
+    <div class="mt-5 overflow-hidden rounded-2xl border border-[#C1A87D] bg-white shadow-sm">
+      <div class="bg-[#C1A87D] py-2 text-center text-[11px] font-semibold uppercase tracking-widest text-navy">
+        Area Contatti
+      </div>
+      <a href="consulenza.html" class="block border-b border-navy/5 py-3.5 text-center text-[15px] font-medium text-navy transition-colors hover:bg-gray-50">
+        Prenota Consulenza
+      </a>
+      <a href="contatti.html" class="block py-3.5 text-center text-[15px] text-slate-600 transition-colors hover:bg-gray-50">
+        Informazioni e Sede
+      </a>
+    </div>
+    <!-- FINE BLOCCO CONTATTI INTEGRATO MOBILE -->
   </div>
 </header>
 
