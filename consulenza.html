@@ -612,18 +612,27 @@ document.addEventListener('DOMContentLoaded', function() {
   /* ---------- Menu mobile ---------- */
   var menuBtn = document.getElementById('menuBtn');
   var mobileMenu = document.getElementById('mobileMenu');
+  var menuOverlay = document.getElementById('menuOverlay');
   var iconOpen = document.getElementById('iconOpen');
   var iconClose = document.getElementById('iconClose');
 
   function setMenu(open) {
     mobileMenu.classList.toggle('hidden', !open);
+    menuOverlay.classList.toggle('hidden', !open);
     iconOpen.classList.toggle('hidden', open);
     iconClose.classList.toggle('hidden', !open);
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
+  
   menuBtn.addEventListener('click', function () {
     setMenu(mobileMenu.classList.contains('hidden'));
   });
+
+  // Chiude il menu se clicchi sullo sfondo blu
+  menuOverlay.addEventListener('click', function () {
+    setMenu(false);
+  });
+  
   mobileMenu.querySelectorAll('a, button').forEach(function (el) {
     el.addEventListener('click', function () { setMenu(false); });
   });
