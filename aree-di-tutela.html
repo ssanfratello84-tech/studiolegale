@@ -77,6 +77,22 @@
   .nav-link:hover::after, .nav-link[aria-current="page"]::after { transform: scaleX(1); }
   .nav-link[aria-current="page"] { color: #101F44; font-weight: 500; }
 
+  /* ---- Pagina corrente nel Menu Mobile ---- */
+  #mobileMenu a[aria-current="page"] {
+    color: #101F44;
+    font-weight: 500;
+    position: relative;
+  }
+  #mobileMenu a[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 2.5rem;
+    height: 2px;
+    background: #C1A87D;
+  }
+
   /* ---- Bottoni (Stile Premium Unificato) ---- */
   .btn-primary {
     display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
@@ -300,12 +316,12 @@
     </div>
   </nav>
 
-  <!-- MENU MOBILE APERTO -->
-  <div id="mobileMenu" class="hidden border-t border-navy/5 bg-white px-5 pb-7 pt-2 lg:hidden shadow-lg">
-    <a href="index.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Lo Studio</a>
-    <a href="metodo-forense.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Metodo Forense</a>
-    <a href="aree-di-tutela.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Aree di Tutela</a>
-   <a href="casi-studio.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Casi Studio</a>
+<!-- MENU MOBILE APERTO -->
+<div id="mobileMenu" class="hidden border-t border-navy/5 bg-white px-5 pb-7 pt-2 lg:hidden shadow-lg">
+  <a href="index.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Lo Studio</a>
+  <a href="metodo-forense.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Metodo Forense</a>
+  <a href="aree-di-tutela.html" class="block border-b border-gray-100 py-3.5 text-[15px] font-semibold text-navy">Aree di Tutela</a>
+  <a href="casi-studio.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Casi Studio</a>
     <!-- Pulsanti Azione Mobile Separati -->
     <div class="mt-6 flex flex-col gap-3 pb-2">
       <a href="consulenza.html" class="block w-full rounded-full bg-[#101F44] py-3.5 text-center text-[15px] font-medium text-white shadow-md transition-all hover:bg-[#C1A87D] hover:text-[#101F44]">
