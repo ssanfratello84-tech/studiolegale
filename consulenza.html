@@ -641,6 +641,42 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
 
+/* ---------- Tendina Contatti Desktop ---------- */
+  var bottoneTendina = document.getElementById('bottoneTendina');
+  var pannelloTendina = document.getElementById('pannelloTendina');
+  var iconaTendina = document.getElementById('iconaTendina');
+
+  if (bottoneTendina && pannelloTendina) {
+    bottoneTendina.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var espansa = bottoneTendina.getAttribute('aria-expanded') === 'true';
+      
+      if (espansa) {
+        pannelloTendina.classList.add('opacity-0', 'invisible', 'translate-y-2');
+        pannelloTendina.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        iconaTendina.classList.remove('-rotate-180');
+        bottoneTendina.classList.remove('border-navy', 'bg-navy', 'text-white');
+        bottoneTendina.setAttribute('aria-expanded', 'false');
+      } else {
+        pannelloTendina.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+        pannelloTendina.classList.add('opacity-100', 'visible', 'translate-y-0');
+        iconaTendina.classList.add('-rotate-180');
+        bottoneTendina.classList.add('border-navy', 'bg-navy', 'text-white');
+        bottoneTendina.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!bottoneTendina.contains(e.target) && !pannelloTendina.contains(e.target)) {
+        pannelloTendina.classList.add('opacity-0', 'invisible', 'translate-y-2');
+        pannelloTendina.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        iconaTendina.classList.remove('-rotate-180');
+        bottoneTendina.classList.remove('border-navy', 'bg-navy', 'text-white');
+        bottoneTendina.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+  
   /* ---------- Menu mobile ---------- */
   var menuBtn = document.getElementById('menuBtn');
   var mobileMenu = document.getElementById('mobileMenu');
