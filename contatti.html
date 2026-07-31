@@ -905,6 +905,206 @@
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 })();
+
+/* ============================================================
+   FORM CONTATTI — sottocategorie condizionali + invio asincrono
+   Sincronizza <select> (desktop) e chip (touch): entrambi vivono
+   nel DOM, ne è visibile uno solo, ma la fonte di verità è sempre
+   l'input hidden associato al gruppo.
+   ============================================================= */
+(function () {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+
+  var GRUPPI = {
+    azienda:        'gruppo_azienda',
+    privato:        'gruppo_privato',
+    professionista: 'gruppo_professionista',
+    assicurazione:  'gruppo_assicurazione',
+    ente:           'gruppo_ente'
+  };
+  var CON_RAGIONE_SOCIALE = ['azienda', 'assicurazione', 'ente', 'professionista'];
+
+  var soggettoSelect = document.getElementById('soggetto_select');
+  var soggettoHidden = document.getElementById('soggetto');
+  var soggettoChips  = form.querySelectorAll('.chip[data-soggetto]');
+  var soggettoBox    = soggettoHidden ? soggettoHidden.parentElement : null;
+  var gruppoRS       = document.getElementById('gruppo_ragione_sociale');
+  var inputRS        = document.getElementById('ragione_sociale');
+
+  /* Il <select> è display:none su touch: lasciarlo required bloccherebbe
+     l'invio con "invalid form control is not focusable". Validiamo a mano. */
+  if (soggettoSelect) soggettoSelect.removeAttribute('required');
+
+  function etichetta(select, valore) {
+    if (!select || !valore) return valore || '';
+    var opt = select.querySelector('option[value="' + valore + '"]');
+    return opt ? opt.textContent.trim() : valore;
+  }
+
+  function mostraErrore(box, testo) {
+    if (!box) return;
+    var msg = box.querySelector('.field-error');
+    if (!msg) {
+      msg = document.createElement('p');
+      msg.className = 'field-error mt-2 text-sm text-red-600';
+      box.appendChild(msg);
+    }
+    msg.textContent = testo;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function pulisciErrore(box) {
+    if (!box) return;
+    var msg = box.querySelector('.field-error');
+    if (msg) msg.parentNode.removeChild(msg);
+  }
+
+  function svuotaGruppo(id) {
+    var g = document.getElementById(id);
+    if (!g) return;
+    g.classList.add('hidden');
+    pulisciErrore(g);
+    var sel = g.querySelector('select');
+    if (sel) sel.value = '';
+    var hid = g.querySelector('input[type="hidden"]');
+    if (hid) hid.value = '';
+    Array.prototype.forEach.call(g.querySelectorAll('.chip[data-area]'), function (c) {
+      c.classList.remove('is-active');
+      c.setAttribute('aria-checked', 'false');
+    });
+  }
+
+  function applicaSoggetto(valore) {
+    valore = valore || '';
+    if (soggettoHidden) soggettoHidden.value = valore;
+    if (soggettoSelect && soggettoSelect.value !== valore) soggettoSelect.value = valore;
+
+    Array.prototype.forEach.call(soggettoChips, function (c) {
+      var attivo = c.getAttribute('data-soggetto') === valore;
+      c.classList.toggle('is-active', attivo);
+      c.setAttribute('aria-checked', attivo ? 'true' : 'false');
+    });
+
+    Object.keys(GRUPPI).forEach(function (k) { svuotaGruppo(GRUPPI[k]); });
+
+    var g = GRUPPI[valore] ? document.getElementById(GRUPPI[valore]) : null;
+    if (g) g.classList.remove('hidden');
+
+    var serve = CON_RAGIONE_SOCIALE.indexOf(valore) !== -1;
+    if (gruppoRS) gruppoRS.classList.toggle('hidden', !serve);
+    if (inputRS && !serve) inputRS.value = '';
+
+    if (valore) pulisciErrore(soggettoBox);
+  }
+
+  /* --- Tipo di Richiedente --- */
+  Array.prototype.forEach.call(soggettoChips, function (chip) {
+    chip.addEventListener('click', function () {
+      applicaSoggetto(chip.getAttribute('data-soggetto'));
+    });
+  });
+  if (soggettoSelect) {
+    soggettoSelect.addEventListener('change', function () {
+      applicaSoggetto(soggettoSelect.value);
+    });
+  }
+
+  /* --- Area di Interesse (dentro ciascun gruppo) --- */
+  function applicaArea(gruppo, valore) {
+    if (!gruppo) return;
+    Array.prototype.forEach.call(gruppo.querySelectorAll('.chip[data-area]'), function (c) {
+      var attivo = c.getAttribute('data-area') === valore;
+      c.classList.toggle('is-active', attivo);
+      c.setAttribute('aria-checked', attivo ? 'true' : 'false');
+    });
+    var sel = gruppo.querySelector('select');
+    if (sel && sel.value !== valore) sel.value = valore;
+    var hid = gruppo.querySelector('input[type="hidden"]');
+    if (hid) hid.value = valore;
+    if (valore) pulisciErrore(gruppo);
+  }
+
+  Array.prototype.forEach.call(form.querySelectorAll('.chip[data-area]'), function (chip) {
+    chip.addEventListener('click', function () {
+      applicaArea(chip.closest('[id^="gruppo_"]'), chip.getAttribute('data-area'));
+    });
+  });
+  Array.prototype.forEach.call(form.querySelectorAll('.logic-submenu'), function (sel) {
+    sel.addEventListener('change', function () {
+      applicaArea(sel.closest('[id^="gruppo_"]'), sel.value);
+    });
+  });
+
+  /* --- Invio --- */
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var soggetto = soggettoHidden ? soggettoHidden.value : '';
+    if (!soggetto) {
+      mostraErrore(soggettoBox, 'Seleziona il tipo di richiedente.');
+      return;
+    }
+
+    var gruppoArea = GRUPPI[soggetto] ? document.getElementById(GRUPPI[soggetto]) : null;
+    var area = '', areaSelect = null;
+    if (gruppoArea) {
+      areaSelect = gruppoArea.querySelector('select');
+      var hid = gruppoArea.querySelector('input[type="hidden"]');
+      area = hid ? hid.value : '';
+      if (!area) {
+        mostraErrore(gruppoArea, "Seleziona l'area di interesse.");
+        return;
+      }
+    }
+
+    if (gruppoRS && !gruppoRS.classList.contains('hidden') && inputRS && !inputRS.value.trim()) {
+      mostraErrore(gruppoRS, 'Indica la ragione sociale.');
+      return;
+    }
+
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    var hCat  = document.getElementById('hiddenCategoria');
+    var hArea = document.getElementById('hiddenArea');
+    var hNome = document.getElementById('hiddenNomeCompleto');
+    var nome    = (document.getElementById('nome')    || {}).value || '';
+    var cognome = (document.getElementById('cognome') || {}).value || '';
+
+    if (hCat)  hCat.value  = etichetta(soggettoSelect, soggetto);
+    if (hArea) hArea.value = area ? etichetta(areaSelect, area) : '';
+    if (hNome) hNome.value = (nome.trim() + ' ' + cognome.trim()).trim();
+
+    var btn = document.getElementById('submitBtn');
+    var err = document.getElementById('formError');
+    var ok  = document.getElementById('formSuccess');
+    var testoBtn = btn ? btn.textContent : '';
+
+    if (err) err.classList.add('hidden');
+    if (btn) { btn.disabled = true; btn.textContent = 'Invio in corso...'; }
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        form.classList.add('hidden');
+        if (ok) {
+          ok.classList.remove('hidden');
+          ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      })
+      .catch(function () {
+        if (err) err.classList.remove('hidden');
+        if (btn) { btn.disabled = false; btn.textContent = testoBtn; }
+      });
+  });
+
+  /* Stato iniziale coerente anche dopo un refresh con campi ripristinati */
+  applicaSoggetto(soggettoSelect ? soggettoSelect.value : '');
+})();
 </script>
 </body>
 </html>
