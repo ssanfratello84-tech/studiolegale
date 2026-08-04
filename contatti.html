@@ -85,6 +85,7 @@
 <link rel="stylesheet" href="fonts.css?v=2">
 
 <link rel="stylesheet" href="styles.css?v=2">
+<script src="https://unpkg.com/@botpoison/browser" async></script>
 
 <style>
   ::selection { background: #101F44; color: #ffffff; }
@@ -745,6 +746,10 @@
   var form = document.getElementById('contactForm');
   if (!form) return;
 
+  var botpoison = ('Botpoison' in window)
+    ? new Botpoison({ publicKey: 'pk_22d53077-b5fe-4981-9d58-75d7d2bc30b1' })
+    : null;
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -760,14 +765,21 @@
     var dati = {};
     new FormData(form).forEach(function (valore, campo) { dati[campo] = valore; });
 
-    fetch(form.action, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(dati)
-    })
+    var pronto = botpoison ? botpoison.challenge() : Promise.resolve(null);
+
+    pronto
+      .then(function (esito) {
+        if (esito && esito.solution) dati._botpoison = esito.solution;
+
+        return fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(dati)
+        });
+      })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         form.classList.add('hidden');
