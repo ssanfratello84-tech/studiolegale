@@ -757,10 +757,16 @@
     if (err) err.classList.add('hidden');
     if (btn) { btn.disabled = true; btn.textContent = 'Invio in corso...'; }
 
+    var dati = {};
+    new FormData(form).forEach(function (valore, campo) { dati[campo] = valore; });
+
     fetch(form.action, {
       method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(dati)
     })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
