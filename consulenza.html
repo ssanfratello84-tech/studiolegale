@@ -44,6 +44,22 @@
   .eyebrow--light { color: #C1A87D; }
   .eyebrow--light::before { background: #C1A87D; opacity: .6; }
 
+  /* ---- Selettore livello di consulenza ---- */
+  .tier-group { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .tier-btn {
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+    min-height: 56px; padding: .6rem .85rem; border-radius: .65rem;
+    border: 1px solid #DFE4EE; background: #ffffff; color: #101F44;
+    cursor: pointer; text-align: left; -webkit-tap-highlight-color: transparent;
+    transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+  }
+  .tier-btn:hover { border-color: #C1A87D; }
+  .tier-btn:focus-visible { outline: 2px solid #101F44; outline-offset: 2px; }
+  .tier-btn .tier-nome { font-size: .8rem; font-weight: 600; line-height: 1.2; }
+  .tier-btn .tier-meta { font-size: .72rem; opacity: .7; margin-top: .15rem; }
+  .tier-btn.is-active { background: #101F44; border-color: #101F44; color: #ffffff; }
+  .tier-btn.is-active:hover { border-color: #C1A87D; }
+
   .track-label {
     font-size: 10px; font-weight: 600; letter-spacing: .3em;
     text-transform: uppercase; color: rgba(16, 31, 68, .5);
@@ -312,13 +328,19 @@
         <h1 class="mt-4 lg:mt-8 text-navy" style="font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 500; font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: 0.98; letter-spacing: 0.02em;">PRENOTA<br>CONSULENZA</h1>
 
         <p class="mt-5 lg:mt-8 max-w-[30rem] text-lg leading-relaxed text-slate-600">
-          <span style="float: left; font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 400; color: #101F44; font-size: 1.8em; line-height: 0.75; margin-right: 0.05em; margin-top: 0.08em;">L</span>'analisi preliminare è il momento fondante di ogni strategia. Attraverso questo spazio puoi prenotare un colloquio diretto con l'Avv. Daniela Mazzotta per inquadrare la vertenza.
+          <span style="float: left; font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 400; color: #101F44; font-size: 1.8em; line-height: 0.75; margin-right: 0.05em; margin-top: 0.08em;">D</span>ue livelli di colloquio riservato con l'Avv. Daniela Mazzotta, calibrati sulla natura della questione. Scelga quello proporzionato alla sua situazione: se la vicenda risulterà più complessa del previsto, l'onorario del primo viene scomputato dal secondo.
         </p>
 
         <div class="mt-8 space-y-6 max-w-[30rem]">
           <div class="border-t border-navy/10 pt-4">
-            <h3 class="font-serif text-[1.25rem] text-navy font-medium">Di cosa discuteremo?</h3>
-            <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Analizzeremo la documentazione in tuo possesso, valuteremo i profili di rischio e definiremo l'eventuale perimetro di intervento multidisciplinare necessario.</p>
+            <h3 class="font-serif text-[1.25rem] text-navy font-medium">Orientamento Preliminare &middot; 20 minuti</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-slate-600">Per chi ha una situazione che preoccupa e non sa se abbia rilevanza giuridica. Chiarisce se esista una questione da affrontare, in quale ambito si collochi, quali termini siano eventualmente da rispettare e quale sia il passo successivo.</p>
+            <p class="mt-2 text-[14px] leading-relaxed text-slate-500">Non comprende l'esame di documentazione, pareri scritti o la definizione di una strategia difensiva.</p>
+          </div>
+          <div class="border-t border-navy/10 pt-4">
+            <h3 class="font-serif text-[1.25rem] text-navy font-medium">Analisi Approfondita &middot; 60+ minuti</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-slate-600">La sede in cui la vicenda viene esaminata per intero, documenti alla mano. Gli atti vengono studiati prima dell'incontro: il tempo del colloquio è dedicato alle sue domande. Se ritiene, possono partecipare anche altri soggetti da lei scelti.</p>
+            <p class="mt-2 text-[14px] leading-relaxed text-slate-500">Riceve una valutazione motivata della posizione, i profili di rischio, le opzioni percorribili con i relativi tempi e il perimetro dell'eventuale intervento.</p>
           </div>
           <div class="border-t border-navy/10 pt-4">
             <h3 class="font-serif text-[1.25rem] text-navy font-medium">Massimo Riserbo</h3>
@@ -342,24 +364,35 @@
             <!-- STEP 1: Condizioni -->
             <div id="step-conditions" class="flex flex-col flex-1 p-6 sm:p-8 transition-opacity duration-300">
               <p class="track-label mb-2">Step 1 di 2</p>
-              <h3 class="font-serif text-[1.6rem] text-navy font-medium leading-tight mb-5">Condizioni di Incarico</h3>
-              
+              <h3 class="font-serif text-[1.6rem] text-navy font-medium leading-tight mb-4">Condizioni di Incarico</h3>
+
+              <div class="tier-group mb-5" role="radiogroup" aria-label="Livello di consulenza">
+                <button type="button" class="tier-btn" data-tier="orientamento" role="radio" aria-checked="false">
+                  <span class="tier-nome">Orientamento</span>
+                  <span class="tier-meta">20 min &middot; 50&euro;</span>
+                </button>
+                <button type="button" class="tier-btn is-active" data-tier="analisi" role="radio" aria-checked="true">
+                  <span class="tier-nome">Analisi Approfondita</span>
+                  <span class="tier-meta">60+ min &middot; 150&euro;</span>
+                </button>
+              </div>
+
               <ul class="space-y-4 mb-8 flex-1 text-[14px] text-slate-600">
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-[#C1A87D] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  <span><strong>Durata e Modalità:</strong> Il colloquio ha una durata di 60 minuti e può svolgersi in videoconferenza o presso la nostra sede.</span>
+                  <span><strong>Durata e Modalità:</strong> <span id="cond-durata">Il colloquio ha una durata di riferimento di 60 minuti e può svolgersi in videoconferenza o presso la nostra sede.</span></span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-[#C1A87D] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  <span><strong>Onorario:</strong> La consulenza preliminare prevede un onorario fisso di 150€, interamente deducibile in caso di successivo conferimento del mandato.</span>
+                  <span><strong>Onorario:</strong> <span id="cond-onorario">Onorario fisso di 150€, interamente deducibile in caso di successivo conferimento del mandato.</span></span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-[#C1A87D] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                  <span><strong>Materiale:</strong> Eventuale documentazione potrà essere caricata in fase di prenotazione in apposita area sicura.</span>
+                  <span><strong>Materiale:</strong> <span id="cond-materiale">Dopo la conferma riceverà un link dedicato per il caricamento della documentazione, che verrà esaminata prima dell'incontro.</span></span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-[#C1A87D] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  <span><strong>Cancellazioni:</strong> Disdetta o modifica gratuite fino a 24h prima. Penale del 50% (75€) per preavviso inferiore (è tollerata una singola riprogrammazione tardiva).</span>
+                  <span><strong>Cancellazioni:</strong> <span id="cond-penale">Disdetta o modifica gratuite fino a 24h prima. Penale del 50% (75€) per preavviso inferiore (è tollerata una singola riprogrammazione tardiva).</span></span>
                 </li>
               </ul>
 
@@ -410,6 +443,55 @@ document.addEventListener('DOMContentLoaded', function() {
   const stepConditions = document.getElementById('step-conditions');
   const stepCalendar = document.getElementById('step-calendar');
   let calLoaded = false;
+
+  const TIER = {
+    orientamento: {
+      calLink:  'avv.-daniela-mazzotta/orientamento',
+      durata:   'Il colloquio ha una durata di 20 minuti e può svolgersi telefonicamente, in videoconferenza o presso la nostra sede.',
+      onorario: 'Onorario fisso di 50€, interamente scomputato dall\u2019Analisi Approfondita qualora si decida di proseguire.',
+      materiale:'L\u2019Orientamento non prevede l\u2019esame di documentazione. Se la vicenda richiede lo studio di atti, la sede propria è l\u2019Analisi Approfondita.',
+      penale:   'Disdetta o modifica gratuite fino a 24h prima. Penale del 50% (25€) per preavviso inferiore (è tollerata una singola riprogrammazione tardiva).'
+    },
+    analisi: {
+      calLink:  'avv.-daniela-mazzotta/60min',
+      durata:   'Il colloquio ha una durata di riferimento di 60 minuti e può svolgersi in videoconferenza o presso la nostra sede.',
+      onorario: 'Onorario fisso di 150€, interamente deducibile in caso di successivo conferimento del mandato.',
+      materiale:'Dopo la conferma riceverà un link dedicato per il caricamento della documentazione, che verrà esaminata prima dell\u2019incontro.',
+      penale:   'Disdetta o modifica gratuite fino a 24h prima. Penale del 50% (75€) per preavviso inferiore (è tollerata una singola riprogrammazione tardiva).'
+    }
+  };
+
+  let tierAttivo = 'analisi';
+
+  function applicaTier(chiave) {
+    const t = TIER[chiave];
+    if (!t) return;
+    tierAttivo = chiave;
+
+    document.getElementById('cond-durata').textContent    = t.durata;
+    document.getElementById('cond-onorario').textContent  = t.onorario;
+    document.getElementById('cond-materiale').textContent = t.materiale;
+    document.getElementById('cond-penale').textContent    = t.penale;
+
+    document.querySelectorAll('.tier-btn').forEach(function (b) {
+      const attivo = b.getAttribute('data-tier') === chiave;
+      b.classList.toggle('is-active', attivo);
+      b.setAttribute('aria-checked', attivo ? 'true' : 'false');
+    });
+
+    /* Cambiare livello dopo aver aperto il calendario richiede
+       di ricaricare l'embed sul nuovo event type. */
+    if (calLoaded) {
+      document.getElementById('my-cal-inline').innerHTML = '';
+      calLoaded = false;
+    }
+  }
+
+  document.querySelectorAll('.tier-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      applicaTier(b.getAttribute('data-tier'));
+    });
+  });
 
   // 1. Abilita/Disabilita il bottone in base alla checkbox
   checkbox.addEventListener('change', function() {
@@ -468,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     Cal("inline", {
       elementOrSelector:"#my-cal-inline",
-      calLink: "avv.-daniela-mazzotta/60min",
+      calLink: TIER[tierAttivo].calLink,
       layout: "month_view"
     });
 
