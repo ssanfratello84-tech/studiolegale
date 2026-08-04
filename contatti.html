@@ -746,9 +746,22 @@
   var form = document.getElementById('contactForm');
   if (!form) return;
 
-  var botpoison = ('Botpoison' in window)
-    ? new Botpoison({ publicKey: 'pk_22d53077-b5fe-4981-9d58-75d7d2bc30b1' })
-    : null;
+  var CHIAVE_BOTPOISON = 'pk_22d53077-b5fe-4981-9d58-75d7d2bc30b1';
+  var istanza = null;
+
+  /* Lo script Botpoison è caricato con async: al momento in cui questo
+     blocco viene eseguito potrebbe non essere ancora disponibile.
+     Lo attendiamo al submit, non al caricamento della pagina. */
+  function attendiBotpoison(msMax) {
+    return new Promise(function (resolve, reject) {
+      var scadenza = Date.now() + msMax;
+      (function controlla() {
+        if (typeof window.Botpoison === 'function') return resolve();
+        if (Date.now() > scadenza) return reject(new Error('Botpoison non disponibile'));
+        setTimeout(controlla, 100);
+      })();
+    });
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -765,11 +778,14 @@
     var dati = {};
     new FormData(form).forEach(function (valore, campo) { dati[campo] = valore; });
 
-    var pronto = botpoison ? botpoison.challenge() : Promise.resolve(null);
-
-    pronto
+    attendiBotpoison(10000)
+      .then(function () {
+        if (!istanza) istanza = new window.Botpoison({ publicKey: CHIAVE_BOTPOISON });
+        return istanza.challenge();
+      })
       .then(function (esito) {
-        if (esito && esito.solution) dati._botpoison = esito.solution;
+        if (!esito || !esito.solution) throw new Error('Verifica antispam non riuscita');
+        dati._botpoison = esito.solution;
 
         return fetch(form.action, {
           method: 'POST',
@@ -788,7 +804,8 @@
           ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       })
-      .catch(function () {
+      .catch(function (errore) {
+        console.error('Invio form non riuscito:', errore);
         if (err) err.classList.remove('hidden');
         if (btn) { btn.disabled = false; btn.textContent = testoBtn; }
       });
