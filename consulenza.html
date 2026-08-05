@@ -85,6 +85,14 @@
     color: #ffffff;
   }
 
+  /* ---- Pagina corrente sui pulsanti del menu mobile ---- */
+  .nav-cta-mobile[aria-current="page"] {
+    background: transparent;
+    border: 1px solid #101F44;
+    color: #101F44;
+    box-shadow: none;
+  }
+
   /* ---- Bottoni (Stile Premium Unificato) ---- */
   .btn-primary {
     display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
@@ -284,7 +292,7 @@
   <a href="casi-studio.html" class="block border-b border-gray-100 py-3.5 text-[15px] text-slate-600">Casi Studio</a>
     <!-- Pulsanti Azione Mobile Separati -->
     <div class="mt-6 flex flex-col gap-3 pb-2">
-      <a href="consulenza.html" class="block w-full rounded-full bg-[#101F44] py-3.5 text-center text-[15px] font-medium text-white shadow-md transition-all hover:bg-[#C1A87D] hover:text-[#101F44]">
+      <a href="consulenza.html" class="nav-cta-mobile block w-full rounded-full bg-[#101F44] py-3.5 text-center text-[15px] font-medium text-white shadow-md transition-all hover:bg-[#C1A87D] hover:text-[#101F44]" aria-current="page">
         Prenota Consulenza
       </a>
       <a href="contatti.html" class="block w-full rounded-full border border-[#C1A87D] bg-transparent py-3.5 text-center text-[15px] font-medium text-[#101F44] transition-all hover:bg-[#101F44] hover:text-white">
