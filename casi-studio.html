@@ -472,23 +472,37 @@
 </main>
 
 <!-- ============================================================
-     CTA: CARD SOSPESA MODERNA (Galleggia sul bianco) - ATTUALE
+     CTA: CARD SOSPESA (Dinamica: Consulenza su Smartphone / Contatti su Computer)
 ============================================================= -->
 <div class="bg-white px-5 pb-16 pt-6 lg:px-8 lg:pb-20 lg:pt-10">
-  <!-- Ridotto il padding interno su mobile (da p-10 a p-8) per dare più respiro al testo -->
-  <div class="mx-auto flex w-full max-w-7xl flex-col gap-8 rounded-[2rem] bg-[#080d1e] p-8 shadow-2xl sm:p-10 md:p-16 lg:flex-row lg:items-center lg:justify-between">
+  
+  <!-- VERSIONE SMARTPHONE/TABLET: CONSULENZA (Nascosta su schermi grandi) -->
+  <div class="mx-auto flex w-full max-w-7xl flex-col gap-8 rounded-[2rem] bg-[#080d1e] p-8 shadow-2xl sm:p-10 lg:hidden">
     <div class="max-w-xl">
-      <p class="eyebrow eyebrow--light">Linea Diretta</p>
-      <h2 class="mt-4 font-serif text-[28px] font-medium leading-[1.2] text-white sm:text-3xl lg:mt-5 lg:text-4xl">
-        Per informazioni di carattere generale, questioni amministrative e per tutti i recapiti dello Studio      
+      <p class="eyebrow eyebrow--light">Colloquio Riservato</p>
+      <h2 class="mt-4 font-serif text-[28px] font-medium leading-[1.2] text-white sm:text-3xl">
+        Necessita di esaminare il Suo caso o di definire una strategia legale?
       </h2>
     </div>
-    <!-- Bottone allineato a destra su mobile (self-end) e abbassato su desktop (lg:mt-6) -->
-    <a href="consulenza.html" class="btn-white-compact shrink-0 self-end lg:mt-6 px-6 sm:px-[1.9rem]">
-      <span class="sm:hidden">Prenota Consulenza</span>
-      <span class="hidden sm:inline">Prenota la tua consulenza</span>
+    <a href="consulenza.html" class="btn-white-compact shrink-0 self-end px-6 sm:px-[1.9rem]">
+      <span class="sm:hidden">Prenota consulenza</span>
+      <span class="hidden sm:inline">Scopri le modalità e prenota</span>
     </a>
   </div>
+
+  <!-- VERSIONE COMPUTER: CONTATTI (Nascosta su schermi piccoli) -->
+  <div class="hidden lg:flex mx-auto w-full max-w-7xl flex-row items-center justify-between gap-8 rounded-[2rem] bg-[#080d1e] p-8 shadow-2xl sm:p-10 md:p-16">
+    <div class="max-w-xl">
+      <p class="eyebrow eyebrow--light">Linea Diretta</p>
+      <h2 class="mt-5 font-serif text-4xl font-medium leading-[1.2] text-white">
+        Per informazioni di carattere generale, questioni amministrative e per tutti i recapiti dello Studio
+      </h2>
+    </div>
+    <a href="contatti.html" class="btn-white-compact shrink-0 lg:mt-6 px-[1.9rem]">
+      <span>Scopri i contatti</span>
+    </a>
+  </div>
+
 </div>
 
 <!-- ============================================================
