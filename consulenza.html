@@ -542,7 +542,10 @@ document.addEventListener('DOMContentLoaded', function() {
     Cal("inline", {
       elementOrSelector:"#my-cal-inline",
       calLink: TIER[tierAttivo].calLink,
-      layout: "month_view"
+      layout: "month_view",
+      config: {
+        "theme": "light"
+      }
     });
 
     Cal("ui", {
