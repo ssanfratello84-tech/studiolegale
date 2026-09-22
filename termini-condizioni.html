@@ -63,6 +63,9 @@
   .legal-content strong { font-weight: 600; color: #101F44; }
   .legal-content a { color: #101F44; text-decoration: underline; text-decoration-color: rgba(16,31,68,.3); text-underline-offset: 2px; }
   .legal-content a:hover { text-decoration-color: rgba(16,31,68,.7); }
+
+  /* ---- Link legali footer — evidenziati sulla pagina corrente ---- */
+  .footer-legal-link[aria-current="page"] { color: #C1A87D; }
 </style>
 </head>
 <body class="bg-white font-sans text-slate-600">
@@ -267,8 +270,8 @@
         
         <!-- Legal Links: Opzione 2 -->
         <div class="flex shrink-0 gap-6 text-[13px] tracking-wide text-slate-400">
-          <a href="privacy-policy.html" class="transition-colors hover:text-white">Informativa Dati e Navigazione</a>
-          <a href="termini-condizioni.html" class="transition-colors hover:text-white">Termini e Condizioni</a>
+          <a href="privacy-policy.html" class="footer-legal-link transition-colors hover:text-white">Informativa Dati e Navigazione</a>
+          <a href="termini-condizioni.html" class="footer-legal-link transition-colors hover:text-white" aria-current="page">Termini e Condizioni</a>
         </div>
         
       </div>
