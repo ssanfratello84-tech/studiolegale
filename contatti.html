@@ -232,7 +232,7 @@
 
   /* ---- Copia contatto — variante footer (sfondo scuro) ---- */
   .copy-btn-footer {
-    position: relative; align-self: center;
+    position: relative; align-self: flex-start; margin-top: 0.2rem;
     display: inline-flex; align-items: center; justify-content: center;
     width: 2.1rem; height: 2.1rem; border-radius: 9999px;
     color: #C1A87D; background: transparent;
@@ -275,10 +275,6 @@
   /* ---- Link legali footer — evidenziati sulla pagina corrente ---- */
   .footer-legal-link[aria-current="page"] { color: #C1A87D; }
 
-  /* ---- Email footer — niente a capo da desktop in su (regola autosufficiente) ---- */
-  @media (min-width: 1024px) {
-    .footer-email-line { white-space: nowrap; overflow-wrap: normal; word-break: normal; }
-  }
 </style>
 </head>
 
@@ -595,7 +591,7 @@
       </div>
 
       <!-- Colonna 3: Contatti Diretti -->
-      <div class="lg:col-span-4 lg:pl-[45px]">
+      <div class="lg:col-span-4">
         <!-- Titoli e linee visibili SOLO su Desktop -->
         <h3 class="hidden lg:block font-serif text-2xl text-white">Contatti Diretti</h3>
         <div class="hidden lg:block mt-4 mb-8 h-[2px] w-12 bg-[#C1A87D]"></div>
@@ -626,7 +622,7 @@
             <div class="flex flex-1 min-w-0 flex-col pt-1">
               <!-- Label Dorata -->
               <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Scrivici via mail</span>
-              <a href="mailto:contatti@studiolegalemazzotta.it" class="link-gold-text footer-email-line mt-1 break-words text-[15px] font-medium text-white transition-colors">contatti@<wbr>studiolegalemazzotta.it</a>
+              <a href="mailto:contatti@studiolegalemazzotta.it" class="link-gold-text mt-1 break-words text-[15px] font-medium text-white transition-colors">contatti@<wbr>studiolegalemazzotta.it</a>
             </div>
             <button type="button" class="copy-btn-footer" data-copy-value="contatti@studiolegalemazzotta.it" aria-label="Copia indirizzo email">
               <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
