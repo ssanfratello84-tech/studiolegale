@@ -202,6 +202,33 @@
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
   }
+
+  /* ---- Copia contatto ---- */
+  .copy-btn {
+    position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.1rem; height: 2.1rem; border-radius: 9999px;
+    color: #C1A87D; background: transparent;
+    border: 1px solid transparent; cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .copy-btn:hover { background: rgba(193,168,125,.12); border-color: rgba(193,168,125,.4); }
+  .copy-btn:focus-visible { outline: 2px solid #101F44; outline-offset: 2px; }
+  .copy-btn svg { width: 1.05rem; height: 1.05rem; }
+  .copy-btn .icon-check { display: none; }
+  .copy-btn.is-copied { color: #1a7f4f; background: rgba(26,127,79,.1); border-color: rgba(26,127,79,.3); }
+  .copy-btn.is-copied .icon-copy { display: none; }
+  .copy-btn.is-copied .icon-check { display: block; }
+  .copy-btn .copy-tooltip {
+    position: absolute; bottom: calc(100% + 6px); right: 0;
+    background: #101F44; color: #fff; font-size: 11px; font-weight: 600;
+    letter-spacing: .04em; padding: .3rem .6rem; border-radius: .4rem;
+    white-space: nowrap; opacity: 0; pointer-events: none;
+    transform: translateY(4px); transition: opacity .18s ease, transform .18s ease;
+  }
+  .copy-btn.is-copied .copy-tooltip { opacity: 1; transform: translateY(0); }
+  .contact-card { position: relative; }
+  .contact-card > a { display: block; padding-right: 2.75rem; }
 </style>
 </head>
 
@@ -335,31 +362,52 @@
           <div class="mt-8 space-y-6">
             
             <!-- TELEFONO -->
-            <a href="tel:+393283313179" class="flex flex-col justify-center min-h-[76px] gap-1.5 rounded-xl border border-navy/10 px-5 py-4 transition-colors hover:border-navy/25 hover:bg-gray-50/70">
-              <div class="flex items-center gap-2.5">
-                <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="#C1A87D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
-                <span class="field-label" style="margin-bottom: 0;">Telefono</span>
-              </div>
-              <span class="block text-navy" style="font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 500; font-size: 1.6rem; font-variant-numeric: lining-nums tabular-nums;">328 331 3179</span>
-            </a>
+            <div class="contact-card flex flex-col justify-center min-h-[76px] gap-1.5 rounded-xl border border-navy/10 px-5 py-4 transition-colors hover:border-navy/25 hover:bg-gray-50/70">
+              <a href="tel:+393283313179">
+                <div class="flex items-center gap-2.5">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="#C1A87D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+                  <span class="field-label" style="margin-bottom: 0;">Telefono</span>
+                </div>
+                <span class="block text-navy" style="font-family: 'Cormorant Garamond', 'Cormorant Garamond Fallback', Georgia, serif; font-weight: 500; font-size: 1.6rem; font-variant-numeric: lining-nums tabular-nums;">328 331 3179</span>
+              </a>
+              <button type="button" class="copy-btn" data-copy-value="328 331 3179" aria-label="Copia numero di telefono">
+                <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span class="copy-tooltip">Copiato</span>
+              </button>
+            </div>
             
             <!-- EMAIL ORDINARIA -->
-            <a href="mailto:contatti@studiolegalemazzotta.it" class="flex flex-col justify-center min-h-[76px] gap-1.5 rounded-xl border border-navy/10 px-5 py-4 transition-colors hover:border-navy/25 hover:bg-gray-50/70">
-              <div class="flex items-center gap-2.5">
-                <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="#C1A87D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-                <span class="field-label" style="margin-bottom: 0;">Email</span>
-              </div>
-              <span class="block font-sans text-[15px] font-medium text-navy break-words">contatti@studiolegalemazzotta.it</span>
-            </a>          
+            <div class="contact-card flex flex-col justify-center min-h-[76px] gap-1.5 rounded-xl border border-navy/10 px-5 py-4 transition-colors hover:border-navy/25 hover:bg-gray-50/70">
+              <a href="mailto:contatti@studiolegalemazzotta.it">
+                <div class="flex items-center gap-2.5">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="#C1A87D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                  <span class="field-label" style="margin-bottom: 0;">Email</span>
+                </div>
+                <span class="block font-sans text-[15px] font-medium text-navy break-words">contatti@studiolegalemazzotta.it</span>
+              </a>
+              <button type="button" class="copy-btn" data-copy-value="contatti@studiolegalemazzotta.it" aria-label="Copia indirizzo email">
+                <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span class="copy-tooltip">Copiato</span>
+              </button>
+            </div>          
 
             <!-- WHATSAPP (SEGRETERIA - STILE GOLD) -->
-            <a href="https://wa.me/393283313179" target="_blank" rel="noopener" class="flex flex-col justify-center min-h-[76px] gap-1.5 rounded-xl border border-navy/10 px-5 py-4 transition-colors hover:border-navy/25 hover:bg-gray-50/70">
-              <div class="flex items-center gap-2.5">
-                <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="#C1A87D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>
-                <span class="field-label" style="margin-bottom: 0;">Segreteria WhatsApp</span>
-              </div>
-              <span class="block font-sans text-[15px] font-medium text-navy">Scrivici su WhatsApp</span>
-            </a>
+            <div class="contact-card flex flex-col justify-center min-h-[76px] gap-1.5 rounded-xl border border-navy/10 px-5 py-4 transition-colors hover:border-navy/25 hover:bg-gray-50/70">
+              <a href="https://wa.me/393283313179" target="_blank" rel="noopener">
+                <div class="flex items-center gap-2.5">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="#C1A87D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>
+                  <span class="field-label" style="margin-bottom: 0;">Segreteria WhatsApp</span>
+                </div>
+                <span class="block font-sans text-[15px] font-medium text-navy">Scrivici su WhatsApp</span>
+              </a>
+              <button type="button" class="copy-btn" data-copy-value="+39 328 331 3179" aria-label="Copia numero WhatsApp">
+                <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span class="copy-tooltip">Copiato</span>
+              </button>
+            </div>
 
             <!-- AVVISO GENERICO SUI CANALI DIRETTI -->
             <p class="border-t border-navy/10 pt-5 font-sans text-[13px] leading-relaxed text-slate-500">
@@ -367,16 +415,23 @@
             </p>
 
             <!-- POSTA CERTIFICATA (PEC) -->
-            <a href="mailto:daniela.mazzotta@monza.pecavvocati.it" class="flex flex-col justify-center min-h-[76px] gap-1.5 rounded-xl border border-navy/10 px-5 py-4 transition-colors hover:border-navy/25 hover:bg-gray-50/70">
-              <div class="flex items-center gap-2.5">
-                <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="#C1A87D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <path d="m9 12 2 2 4-4"/>
-                </svg>
-                <span class="field-label" style="margin-bottom: 0;">Posta Certificata (PEC)</span>
-              </div>
-              <span class="block font-sans text-[15px] font-medium text-navy break-words">daniela.mazzotta@monza.pecavvocati.it</span>
-            </a>
+            <div class="contact-card flex flex-col justify-center min-h-[76px] gap-1.5 rounded-xl border border-navy/10 px-5 py-4 transition-colors hover:border-navy/25 hover:bg-gray-50/70">
+              <a href="mailto:daniela.mazzotta@monza.pecavvocati.it">
+                <div class="flex items-center gap-2.5">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="#C1A87D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <path d="m9 12 2 2 4-4"/>
+                  </svg>
+                  <span class="field-label" style="margin-bottom: 0;">Posta Certificata (PEC)</span>
+                </div>
+                <span class="block font-sans text-[15px] font-medium text-navy break-words">daniela.mazzotta@monza.pecavvocati.it</span>
+              </a>
+              <button type="button" class="copy-btn" data-copy-value="daniela.mazzotta@monza.pecavvocati.it" aria-label="Copia indirizzo PEC">
+                <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span class="copy-tooltip">Copiato</span>
+              </button>
+            </div>
             
           </div>      
 
@@ -792,6 +847,57 @@
         if (err) err.classList.remove('hidden');
         if (btn) { btn.disabled = false; btn.textContent = testoBtn; }
       });
+  });
+})();
+
+/* ============================================================
+   COPIA CONTATTO — telefono, email, WhatsApp, PEC
+   Un solo listener delegato: funziona anche sui pulsanti
+   dentro elementi aggiunti dinamicamente.
+   ============================================================= */
+(function () {
+  function copiaTesto(testo) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(testo);
+    }
+    /* Fallback per contesti non sicuri (es. anteprima http locale) */
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = testo;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        resolve();
+      } catch (e) {
+        reject(e);
+      } finally {
+        document.body.removeChild(ta);
+      }
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.copy-btn');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    var valore = btn.getAttribute('data-copy-value');
+    if (!valore) return;
+
+    copiaTesto(valore).then(function () {
+      btn.classList.add('is-copied');
+      clearTimeout(btn._copyTimeout);
+      btn._copyTimeout = setTimeout(function () {
+        btn.classList.remove('is-copied');
+      }, 1600);
+    }).catch(function (errore) {
+      console.error('Copia non riuscita:', errore);
+    });
   });
 })();
 </script>
