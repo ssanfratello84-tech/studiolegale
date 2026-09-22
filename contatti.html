@@ -261,7 +261,16 @@
   @media (hover: hover) and (pointer: fine) {
     .icon-link-gold:hover { background-color: #C1A87D; color: #0B1A30; }
   }
+  .icon-link-gold:active { background-color: #C1A87D; color: #0B1A30; }
   .icon-link-gold:focus-visible { outline: 2px solid #C1A87D; outline-offset: 2px; }
+
+  /* ---- Link di testo footer — stessa protezione dall'hover incollato ---- */
+  .link-gold-text { -webkit-tap-highlight-color: transparent; }
+  @media (hover: hover) and (pointer: fine) {
+    .link-gold-text:hover { color: #C1A87D; }
+  }
+  .link-gold-text:active { color: #C1A87D; }
+  .link-gold-text:focus-visible { outline: 2px solid #C1A87D; outline-offset: 2px; border-radius: 2px; }
 </style>
 </head>
 
@@ -592,7 +601,7 @@
             <div class="flex flex-1 min-w-0 flex-col pt-1">
               <!-- Label Dorata -->
               <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Chiama lo studio</span>
-              <a href="tel:+393283313179" class="mt-1 text-[15px] font-medium text-white transition-colors hover:text-[#C1A87D]">+39 328 331 3179</a>
+              <a href="tel:+393283313179" class="link-gold-text mt-1 text-[15px] font-medium text-white transition-colors">+39 328 331 3179</a>
             </div>
             <button type="button" class="copy-btn-footer" data-copy-value="+39 328 331 3179" aria-label="Copia numero di telefono">
               <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -609,7 +618,7 @@
             <div class="flex flex-1 min-w-0 flex-col pt-1">
               <!-- Label Dorata -->
               <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Scrivici via mail</span>
-              <a href="mailto:contatti@studiolegalemazzotta.it" class="mt-1 break-words text-[15px] font-medium text-white transition-colors hover:text-[#C1A87D]">contatti@studiolegalemazzotta.it</a>
+              <a href="mailto:contatti@studiolegalemazzotta.it" class="link-gold-text mt-1 break-words text-[15px] font-medium text-white transition-colors">contatti@<wbr>studiolegalemazzotta.it</a>
             </div>
             <button type="button" class="copy-btn-footer" data-copy-value="contatti@studiolegalemazzotta.it" aria-label="Copia indirizzo email">
               <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -626,7 +635,7 @@
             <div class="flex flex-1 min-w-0 flex-col pt-1">
               <!-- Label Dorata -->
               <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Messaggio Rapido</span>
-              <a href="https://wa.me/393283313179" target="_blank" rel="noopener" class="mt-1 text-[15px] font-medium text-white transition-colors hover:text-[#C1A87D]">WhatsApp</a>
+              <a href="https://wa.me/393283313179" target="_blank" rel="noopener" class="link-gold-text mt-1 text-[15px] font-medium text-white transition-colors">WhatsApp</a>
             </div>
             <button type="button" class="copy-btn-footer" data-copy-value="+39 328 331 3179" aria-label="Copia numero WhatsApp">
               <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
