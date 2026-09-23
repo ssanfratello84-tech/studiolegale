@@ -228,6 +228,16 @@
   .link-gold-text:active { color: #C1A87D; }
   .link-gold-text:focus-visible { outline: 2px solid #C1A87D; outline-offset: 2px; border-radius: 2px; }
 
+  /* ---- Riga contatto footer come pulsante unico (icona + testo insieme) ---- */
+  .contact-row-link { -webkit-tap-highlight-color: transparent; }
+  @media (hover: hover) and (pointer: fine) {
+    .contact-row-link:hover .icon-link-gold-inner { background-color: #C1A87D; color: #0B1A30; }
+    .contact-row-link:hover .link-gold-text-inner { color: #C1A87D; }
+  }
+  .contact-row-link:active .icon-link-gold-inner { background-color: #C1A87D; color: #0B1A30; }
+  .contact-row-link:active .link-gold-text-inner { color: #C1A87D; }
+  .contact-row-link:focus-visible { outline: 2px solid #C1A87D; outline-offset: 2px; border-radius: 8px; }
+
   /* ---- Link legali footer — evidenziati sulla pagina corrente ---- */
   .footer-legal-link[aria-current="page"] { color: #C1A87D; }
 </style>
@@ -610,14 +620,16 @@
         <ul class="flex flex-col gap-5">
           <!-- Telefono -->
           <li class="flex items-start gap-4">
-            <a href="tel:+393283313179" aria-label="Chiama lo studio" class="icon-link-gold flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#C1A87D] bg-white/5 text-[#C1A87D] transition-colors">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.896-1.596-5.25-3.95-6.847-6.847l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+            <a href="tel:+393283313179" aria-label="Chiama lo studio, +39 328 331 3179" class="contact-row-link flex flex-1 min-w-0 items-start gap-4">
+              <div class="icon-link-gold-inner flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#C1A87D] bg-white/5 text-[#C1A87D] transition-colors">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.896-1.596-5.25-3.95-6.847-6.847l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+              </div>
+              <div class="flex flex-1 min-w-0 flex-col pt-1">
+                <!-- Label Dorata -->
+                <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Chiama lo studio</span>
+                <span class="link-gold-text-inner mt-1 text-[15px] font-medium text-white transition-colors">+39 328 331 3179</span>
+              </div>
             </a>
-            <div class="flex flex-1 min-w-0 flex-col pt-1">
-              <!-- Label Dorata -->
-              <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Chiama lo studio</span>
-              <a href="tel:+393283313179" class="link-gold-text mt-1 text-[15px] font-medium text-white transition-colors">+39 328 331 3179</a>
-            </div>
             <button type="button" class="copy-btn-footer" data-copy-value="+39 328 331 3179" aria-label="Copia numero di telefono">
               <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -627,14 +639,16 @@
           
           <!-- Mail -->
           <li class="flex items-start gap-4">
-            <a href="mailto:contatti@studiolegalemazzotta.it" aria-label="Scrivi una email allo Studio" class="icon-link-gold flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#C1A87D] bg-white/5 text-[#C1A87D] transition-colors">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+            <a href="mailto:contatti@studiolegalemazzotta.it" aria-label="Scrivi una email allo Studio, contatti@studiolegalemazzotta.it" class="contact-row-link flex flex-1 min-w-0 items-start gap-4">
+              <div class="icon-link-gold-inner flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#C1A87D] bg-white/5 text-[#C1A87D] transition-colors">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+              </div>
+              <div class="flex flex-1 min-w-0 flex-col pt-1">
+                <!-- Label Dorata -->
+                <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Scrivici via mail</span>
+                <span class="link-gold-text-inner mt-1 break-words text-[15px] font-medium text-white transition-colors">contatti@<wbr>studiolegalemazzotta.it</span>
+              </div>
             </a>
-            <div class="flex flex-1 min-w-0 flex-col pt-1">
-              <!-- Label Dorata -->
-              <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Scrivici via mail</span>
-              <a href="mailto:contatti@studiolegalemazzotta.it" class="link-gold-text mt-1 break-words text-[15px] font-medium text-white transition-colors">contatti@<wbr>studiolegalemazzotta.it</a>
-            </div>
             <button type="button" class="copy-btn-footer" data-copy-value="contatti@studiolegalemazzotta.it" aria-label="Copia indirizzo email">
               <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -644,14 +658,16 @@
           
           <!-- WhatsApp -->
           <li class="flex items-start gap-4">
-            <a href="https://wa.me/393283313179" target="_blank" rel="noopener" aria-label="Apri WhatsApp" class="icon-link-gold flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#C1A87D] bg-white/5 text-[#C1A87D] transition-colors">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>
+            <a href="https://wa.me/393283313179" target="_blank" rel="noopener" aria-label="Apri WhatsApp" class="contact-row-link flex flex-1 min-w-0 items-start gap-4">
+              <div class="icon-link-gold-inner flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#C1A87D] bg-white/5 text-[#C1A87D] transition-colors">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>
+              </div>
+              <div class="flex flex-1 min-w-0 flex-col pt-1">
+                <!-- Label Dorata -->
+                <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Messaggio Rapido</span>
+                <span class="link-gold-text-inner mt-1 text-[15px] font-medium text-white transition-colors">WhatsApp</span>
+              </div>
             </a>
-            <div class="flex flex-1 min-w-0 flex-col pt-1">
-              <!-- Label Dorata -->
-              <span class="text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Messaggio Rapido</span>
-              <a href="https://wa.me/393283313179" target="_blank" rel="noopener" class="link-gold-text mt-1 text-[15px] font-medium text-white transition-colors">WhatsApp</a>
-            </div>
             <button type="button" class="copy-btn-footer" data-copy-value="+39 328 331 3179" aria-label="Copia numero WhatsApp">
               <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>

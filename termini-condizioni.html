@@ -105,6 +105,16 @@
   .link-gold-text:active { color: #C1A87D; }
   .link-gold-text:focus-visible { outline: 2px solid #C1A87D; outline-offset: 2px; border-radius: 2px; }
 
+  /* ---- Riga contatto footer come pulsante unico (icona + testo insieme) ---- */
+  .contact-row-link { -webkit-tap-highlight-color: transparent; }
+  @media (hover: hover) and (pointer: fine) {
+    .contact-row-link:hover .icon-link-gold-inner { background-color: #C1A87D; color: #0B1A30; }
+    .contact-row-link:hover .link-gold-text-inner { color: #C1A87D; }
+  }
+  .contact-row-link:active .icon-link-gold-inner { background-color: #C1A87D; color: #0B1A30; }
+  .contact-row-link:active .link-gold-text-inner { color: #C1A87D; }
+  .contact-row-link:focus-visible { outline: 2px solid #C1A87D; outline-offset: 2px; border-radius: 8px; }
+
   /* ---- Link legali footer — evidenziati sulla pagina corrente ---- */
   .footer-legal-link[aria-current="page"] { color: #C1A87D; }
 </style>
