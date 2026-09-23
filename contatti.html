@@ -239,7 +239,9 @@
     border: 1px solid rgba(193,168,125,.35); cursor: pointer;
     transition: background .2s ease, border-color .2s ease, color .2s ease;
   }
-  .copy-btn-footer:hover { background: rgba(193,168,125,.15); border-color: rgba(193,168,125,.6); }
+  @media (hover: hover) and (pointer: fine) {
+    .copy-btn-footer:hover { background: rgba(193,168,125,.15); border-color: rgba(193,168,125,.6); }
+  }
   .copy-btn-footer:focus-visible { outline: 2px solid #C1A87D; outline-offset: 2px; }
   .copy-btn-footer svg { width: 1.05rem; height: 1.05rem; }
   .copy-btn-footer .icon-check { display: none; }
@@ -587,8 +589,8 @@
             <p class="mb-1 text-[11px] font-semibold uppercase tracking-widest text-[#C1A87D]">Sede Principale</p>
             <div class="flex items-start justify-between gap-3">
               <p>Via Alessandro Volta, 16 (Scala C, 7° piano)<br>20093 Cologno Monzese (MI)</p>
-              <a href="https://www.google.com/maps/search/?api=1&query=Via+Alessandro+Volta+16,+20093+Cologno+Monzese+MI" target="_blank" rel="noopener" aria-label="Apri l'indirizzo in Google Maps" class="lg:hidden mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#C1A87D]/40 text-[#C1A87D] transition-colors active:bg-[#C1A87D] active:text-[#0B1A30]">
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>
+              <a href="https://www.google.com/maps/search/?api=1&query=Via+Alessandro+Volta+16,+20093+Cologno+Monzese+MI" target="_blank" rel="noopener" aria-label="Apri l'indirizzo in Google Maps" class="copy-btn-footer lg:hidden">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>
               </a>
             </div>
           </div>
