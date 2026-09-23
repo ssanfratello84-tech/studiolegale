@@ -972,11 +972,12 @@
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('.copy-btn, .copy-btn-footer');
     if (!btn) return;
-    e.preventDefault();
-    e.stopPropagation();
 
     var valore = btn.getAttribute('data-copy-value');
     if (!valore) return;
+
+    e.preventDefault();
+    e.stopPropagation();
 
     copiaTesto(valore).then(function () {
       btn.classList.add('is-copied');
