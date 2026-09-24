@@ -494,8 +494,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const stepConditions = document.getElementById('step-conditions');
   const stepCalendar = document.getElementById('step-calendar');
   let calLoaded = false;
-  let altezzaBaseCal = 0;        // altezza iframe col solo mese (senza orari)
-  let listenerCalAttivo = false; // evita listener doppi se si cambia livello
 
   const TIER = {
     orientamento: {
@@ -636,39 +634,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "hideEventTypeDetails": false,
       "layout": "month_view"
     });
-
-    // 5. Scelto il giorno, porta la vista sugli orari (layout impilato)
-    altezzaBaseCal = 0;
-    if (!listenerCalAttivo) {
-      listenerCalAttivo = true;
-      Cal("on", {
-        action: "__dimensionChanged",
-        callback: function (e) {
-          const d = (e.detail && e.detail.data) || {};
-          const h = d.iframeHeight || 0;
-          if (!h) return;
-
-          // Prima misura o variazione piccola (es. cambio mese): aggiorna la base
-          if (d.isFirstTime || !altezzaBaseCal || h < altezzaBaseCal + 120) {
-            altezzaBaseCal = h;
-            return;
-          }
-
-          // Crescita netta = comparsi gli orari sotto il mese
-          const iframe = document.querySelector('#my-cal-inline iframe');
-          if (!iframe) return;
-          requestAnimationFrame(function () {
-            const inizioOrari = iframe.getBoundingClientRect().top + altezzaBaseCal;
-            if (inizioOrari >= OFFSET_HEADER && inizioOrari < window.innerHeight * 0.6) return; // già visibili
-            const riduciMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            window.scrollTo({
-              top: inizioOrari + window.scrollY - OFFSET_HEADER - 16,
-              behavior: riduciMotion ? 'auto' : 'smooth'
-            });
-          });
-        }
-      });
-    }
   }
 });
 </script>
