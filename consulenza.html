@@ -558,6 +558,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Riporta la vista all'inizio del box (compensando l'header fisso da 78px)
+  const boxStep = stepCalendar.parentElement;
+  const OFFSET_HEADER = 78 + 16;
+  function allineaBox() {
+    const top = boxStep.getBoundingClientRect().top;
+    if (top >= OFFSET_HEADER && top < window.innerHeight * 0.5) return; // già ben visibile
+    const riduciMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({
+      top: top + window.scrollY - OFFSET_HEADER,
+      behavior: riduciMotion ? 'auto' : 'smooth'
+    });
+  }
+
   // 2. Transizione alle date (nascondi step 1, mostra step 2 e carica Cal.com)
   btnShow.addEventListener('click', function() {
     if (!checkbox.checked) return;
@@ -567,6 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
       stepConditions.classList.add('hidden');
       stepCalendar.classList.remove('hidden');
+      allineaBox();
       
       // Piccolo delay per permettere il rendering del blocco prima del fade-in
       setTimeout(() => {
@@ -587,6 +601,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
       stepCalendar.classList.add('hidden');
       stepConditions.classList.remove('hidden');
+      allineaBox();
       setTimeout(() => {
         stepConditions.style.opacity = '1';
       }, 50);
